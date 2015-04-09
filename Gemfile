@@ -13,6 +13,8 @@ gem 'jquery-rails'
 gem 'jbuilder', '~> 2.0'
 gem 'breadcrumbs_on_rails'
 
+gem 'devise'
+
 gem 'wisper'
 gem 'wisper-celluloid'
 gem 'mandrill_mailer'

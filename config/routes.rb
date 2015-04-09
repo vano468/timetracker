@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  devise_for :users
   namespace :admin do
     resources :departments, except: [:index, :show]
     resources :users, except: [:index, :show]
