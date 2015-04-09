@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  category: 1
+  date_from: 2015-04-09 09:37:45
+  date_to: 2015-04-09 09:37:45
+  emails: MyString
+
+two:
+  category: 1
+  date_from: 2015-04-09 09:37:45
+  date_to: 2015-04-09 09:37:45
+  emails: MyString
