@@ -21,4 +21,7 @@ class RecordsController < ApplicationController
   def pending
   end
 
+  def requested
+  end
+
 end
