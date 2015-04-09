@@ -1,0 +1,3 @@
+class DayOff < Record
+
+end

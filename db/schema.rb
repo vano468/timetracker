@@ -28,10 +28,11 @@ ActiveRecord::Schema.define(version: 20150409124829) do
   add_index "departments", ["parent_id"], name: "index_departments_on_parent_id", using: :btree
 
   create_table "records", force: :cascade do |t|
-    t.integer  "category"
+    t.string   "type"
+    t.text     "comment"
+    t.text     "emails"
     t.datetime "date_from"
     t.datetime "date_to"
-    t.string   "emails"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

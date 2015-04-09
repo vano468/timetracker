@@ -1,0 +1,3 @@
+class Vacation < Record
+
+end
