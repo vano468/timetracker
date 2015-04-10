@@ -11,4 +11,9 @@ module CalendarHelper
         }}
     }
   end
+
+  def day_title_format(date)
+    date = DateTime.parse date unless date.instance_of? DateTime
+    "#{Date::MONTHNAMES[date.month]} #{date.day}"
+  end
 end

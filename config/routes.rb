@@ -12,6 +12,7 @@ Rails.application.routes.draw do
 
   resources :departments, only: [:index, :show], concerns: :stats
   resources :users, only: [:show], concerns: :stats
+  resources :worktime, only: [:index, :show]
   resources :records do
     get :pending,   on: :collection
     get :requested, on: :collection
@@ -19,5 +20,5 @@ Rails.application.routes.draw do
     get :boss_disapprove, on: :member
   end
 
-  root to: redirect('departments')
+  root to: redirect('worktime')
 end
