@@ -1,7 +1,6 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
-#
-# Examples:
-#
-#   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
-#   Mayor.create(name: 'Emanuel', city: cities.first)
+d = Department.create title: 'Numero Uno'
+e = d.employees.create email: 'employee@company.org', password: Devise.friendly_token[0,20]
+b = d.employees.create email: 'boss@company.org',     password: Devise.friendly_token[0,20]
+b.boss_of = d
+e.records.create type: 'Vacation'
+e.records.create

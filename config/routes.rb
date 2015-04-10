@@ -15,6 +15,8 @@ Rails.application.routes.draw do
   resources :records do
     get :pending,   on: :collection
     get :requested, on: :collection
+    get :boss_approve,    on: :member
+    get :boss_disapprove, on: :member
   end
 
   root to: redirect('departments')

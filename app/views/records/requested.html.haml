@@ -1,0 +1,14 @@
+%h1 Record
+%h2 Requested
+
+- if @records.present?
+  %table
+    %thead
+      %th ID
+      %th Type
+      %th Status
+    - @records.each do |r|
+      %tr
+        %td= r.id
+        %td= r.type
+        %td= (r.boss_approved == nil ? 'pending' : r.boss_approved)

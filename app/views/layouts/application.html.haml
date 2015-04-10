@@ -5,6 +5,11 @@
     = stylesheet_link_tag 'application', media: 'all'
     = csrf_meta_tags
   %body
+  	- if Rails.env.development?
+    	= switch_user_select
+  	  = link_to 'Create new record', new_record_path
+  	= link_to 'Pending records', pending_records_path
+  	= link_to 'Requested records', requested_records_path
     .container
       = yield
     = javascript_include_tag 'application'

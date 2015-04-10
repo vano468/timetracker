@@ -28,6 +28,7 @@ group :development do
 end
 
 group :development, :test do
+  gem 'switch_user'
   gem 'spring'
   gem 'rspec-rails'
   gem 'capybara'

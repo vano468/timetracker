@@ -1,3 +1,3 @@
-class Sickness
+class Sickness < Record
 
 end
