@@ -30,16 +30,7 @@ class RecordsController < ApplicationController
   end
 
   def pending
-    return unless current_user.present?
-    department = current_user.boss_of
-    return unless department.present?
-    @records = []
-    department.employees.each do |e|
-      records = e.records.where(type: 'Vacation', boss_approved: nil)
-      records.each do |r|
-        @records << r
-      end
-    end
+    @records = PendingDepartmentRecordsByType.result(current_user, 'Vacation')
   end
 
   def requested
