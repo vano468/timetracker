@@ -1,2 +1,11 @@
 %h1 Record
 %h2 Pending
+
+- if @records.present?
+  %table
+    - @records.each do |r|
+      %tr
+        %td= r.id
+        %td= r.type
+        %td= link_to 'Approve', boss_approve_record_path(r)
+        %td= link_to 'Disapprove', boss_disapprove_record_path(r)

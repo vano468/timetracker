@@ -1,0 +1,15 @@
+!!!
+%html
+  %head
+    %title Timetracker
+    = stylesheet_link_tag    'application', media: 'all'
+    = javascript_include_tag 'application'
+    = csrf_meta_tags
+  %body
+    - if Rails.env.development?
+      = switch_user_select
+    = link_to 'Create new record', new_record_path
+    = link_to 'Pending records', pending_records_path
+    = link_to 'Requested records', requested_records_path
+
+    = yield
