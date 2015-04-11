@@ -1,0 +1,25 @@
+#day-record-form.modal.fade
+  .modal-dialog
+    .modal-content
+
+      .modal-header
+        %button.close{'aria-hidden' => 'true', 'data-dismiss' => 'modal', type: 'button'} ×
+        %h4.modal-title
+          = day_title_format(@worktime.day) + ': '
+          WorkTime Record
+
+      .modal-body
+        = form_for @worktime, html: { class: 'form-horizontal' } do |f|
+          = f.hidden_field :day
+
+          .form-group
+            = f.label :time_from, 'Time from:', class: 'col-xs-3 control-label'
+            .col-xs-5= f.text_field :time_from, class: 'form-control', placeholder: 'ex. 09:00'
+
+          .form-group
+            = f.label :time_to, 'Time to:', class: 'col-xs-3 control-label'
+            .col-xs-5= f.text_field :time_to, class: 'form-control', placeholder: 'ex. 17:00'
+
+          .modal-footer
+            %button.btn.btn-default{'data-dismiss' => 'modal'} Close
+            %button.btn.btn-primary{type: 'submit'} Save

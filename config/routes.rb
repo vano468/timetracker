@@ -12,7 +12,7 @@ Rails.application.routes.draw do
 
   resources :departments, only: [:index, :show], concerns: :stats
   resources :users, only: [:show], concerns: :stats
-  resources :worktime, only: [:index, :show]
+  resources :worktimes, only: [:index, :show, :create, :update]
   resources :records do
     get :pending,   on: :collection
     get :requested, on: :collection

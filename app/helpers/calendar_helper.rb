@@ -1,6 +1,6 @@
 module CalendarHelper
   def calendar_options
-    today = Time.now.strftime '%Y-%m-%d'
+    today = today_format
     month = Time.now.month
     @calendar_options = {
         table: { class: 'calendar-body' },
@@ -15,5 +15,13 @@ module CalendarHelper
   def day_title_format(date)
     date = DateTime.parse date unless date.instance_of? DateTime
     "#{Date::MONTHNAMES[date.month]} #{date.day}"
+  end
+
+  def today_format
+    DateTime.now.strftime '%Y-%m-%d'
+  end
+
+  def only_time(datetime)
+    datetime.strftime '%H:%M'
   end
 end
