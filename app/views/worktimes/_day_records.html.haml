@@ -2,12 +2,13 @@
   .day-header
     %span.day-title
       = day_title_format day
-    = button_tag 'Add record', class: 'day-add', id: 'day-record-btn'
+    = button_tag 'Add record', class: 'day-add', id: 'new-record'
   .day-body
     - @worktimes.each do |row|
       .day-row
         = "#{only_time row.date_from} - #{only_time row.date_to}"
-        = link_to fa_icon('pencil'), '#'
+        = link_to fa_icon('pencil'), edit_worktime_path(row), remote: true
         = link_to fa_icon('remove'), row, remote: true, method: :delete, data: { confirm: 'Are you sure?' }, class: 'destroy'
 
-= render 'modal'
+  #new-record-modal= render 'modal', action: 'create'
+  #edit-record-modal= render 'modal', action: 'edit'

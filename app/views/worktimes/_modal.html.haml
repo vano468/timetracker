@@ -6,7 +6,7 @@
         %button.close{'aria-hidden' => 'true', 'data-dismiss' => 'modal', type: 'button'} ×
         %h4.modal-title
           = day_title_format(@worktime.day) + ': '
-          WorkTime Record
+          = title_by_action action
 
       .modal-body
         = form_for @worktime, html: { class: 'form-horizontal' } do |f|
@@ -22,4 +22,4 @@
 
           .modal-footer
             %button.btn.btn-default{'data-dismiss' => 'modal'} Close
-            %button.btn.btn-primary{type: 'submit'} Save
+            %button.btn.btn-primary{type: 'submit'}= btn_text_by_action action

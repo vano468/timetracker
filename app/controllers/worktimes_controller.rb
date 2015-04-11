@@ -1,7 +1,7 @@
 class WorktimesController < ApplicationController
   include CalendarHelper
 
-  before_action :set_worktime, only: [:destroy]
+  before_action :set_worktime, only: [:edit, :update, :destroy]
 
   def index
     set_worktimes today_format
@@ -25,8 +25,19 @@ class WorktimesController < ApplicationController
     end
   end
 
-  def update
+  def edit
+    respond_to do |format|
+      format.html { redirect_to worktimes_path }
+      format.js
+    end
+  end
 
+  def update
+    if @worktime.update worktime_params
+      redirect_to worktimes_path # todo: replace
+    else
+      puts 'saving error' # todo: replace
+    end
   end
 
   def destroy

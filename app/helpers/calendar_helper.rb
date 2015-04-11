@@ -17,8 +17,28 @@ module CalendarHelper
     "#{Date::MONTHNAMES[date.month]} #{date.day}"
   end
 
+  def title_by_action(action)
+    if action == 'create'
+      'Create WorkTime Record'
+    else
+      'Edit WorkTime Record'
+    end
+  end
+
+  def btn_text_by_action(action)
+    if action == 'create'
+      'Create'
+    else
+      'Save'
+    end
+  end
+
   def today_format
     DateTime.now.strftime '%Y-%m-%d'
+  end
+
+  def only_day(datetime)
+    datetime.strftime '%Y-%m-%d'
   end
 
   def only_time(datetime)
