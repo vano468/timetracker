@@ -1,0 +1,7 @@
+'use strict'
+
+$('#edit-record-modal #day-record-form').modal 'hide'
+
+setTimeout ->
+  $('#day-records').empty().append '<%= j render 'day_records' %>'
+, 300
