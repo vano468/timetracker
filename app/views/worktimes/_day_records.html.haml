@@ -1,7 +1,7 @@
 #day-records.day-records
   .day-header
     %span.day-title
-      = day_title_format day
+      = day_title_format @worktime.day
     = button_tag 'Add record', class: 'day-add', id: 'new-record'
   .day-body
     - @worktimes.each do |row|
@@ -10,5 +10,5 @@
         = link_to fa_icon('pencil'), edit_worktime_path(row), remote: true
         = link_to fa_icon('remove'), row, remote: true, method: :delete, data: { confirm: 'Are you sure?' }, class: 'destroy'
 
-  #new-record-modal= render 'modal', action: 'create'
-  #edit-record-modal= render 'modal', action: 'edit'
+  #new-record-modal= render 'form_modal', action: 'create'
+  #edit-record-modal

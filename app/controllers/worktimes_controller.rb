@@ -19,7 +19,8 @@ class WorktimesController < ApplicationController
     @worktime = Worktime.new worktime_params
     @worktime.user = current_user
     if @worktime.save
-      redirect_to worktimes_path # todo: replace
+      set_worktimes only_day @worktime.date_from
+      respond_to { |format| format.js }
     else
       puts 'saving error' # todo: replace
     end
@@ -34,7 +35,8 @@ class WorktimesController < ApplicationController
 
   def update
     if @worktime.update worktime_params
-      redirect_to worktimes_path # todo: replace
+      set_worktimes only_day @worktime.date_from
+      respond_to { |format| format.js }
     else
       puts 'saving error' # todo: replace
     end

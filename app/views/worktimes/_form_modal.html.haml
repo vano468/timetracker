@@ -9,7 +9,7 @@
           = title_by_action action
 
       .modal-body
-        = form_for @worktime, html: { class: 'form-horizontal' } do |f|
+        = form_for @worktime, remote: true, html: { class: 'form-horizontal' } do |f|
           = f.hidden_field :day
 
           .form-group
