@@ -1,6 +1,8 @@
 class WorktimesController < ApplicationController
   include CalendarHelper
 
+  before_action :set_worktime, only: [:destroy]
+
   def index
     set_worktimes today_format
   end
@@ -27,12 +29,20 @@ class WorktimesController < ApplicationController
 
   end
 
+  def destroy
+    @worktime.destroy
+  end
+
 private
 
   def set_worktimes(day)
     @worktimes = Worktime.user(current_user).day day
     @worktime  = Worktime.new
     @worktime.day = day
+  end
+
+  def set_worktime
+    @worktime = Worktime.find params[:id]
   end
 
   def worktime_params
