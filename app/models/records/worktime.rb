@@ -3,6 +3,9 @@ class Worktime < Record
 
   attr_accessor :time_from, :time_to, :day
 
+  validates :time_from, length: { is: 5 }
+  validates :time_to,   length: { is: 5 }
+
   before_save :build_record
   after_find  :update_attrs
 

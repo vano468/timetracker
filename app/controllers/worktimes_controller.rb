@@ -18,11 +18,14 @@ class WorktimesController < ApplicationController
   def create
     @worktime = Worktime.new worktime_params
     @worktime.user = current_user
-    if @worktime.save
-      set_worktimes only_day @worktime.date_from
-      respond_to { |format| format.js }
-    else
-      puts 'saving error' # todo: replace
+
+    respond_to do |format|
+      if @worktime.save
+        set_worktimes only_day @worktime.date_from
+        format.js
+      else
+        format.js { render json: @worktime.errors }
+      end
     end
   end
 
@@ -34,11 +37,13 @@ class WorktimesController < ApplicationController
   end
 
   def update
-    if @worktime.update worktime_params
-      set_worktimes only_day @worktime.date_from
-      respond_to { |format| format.js }
-    else
-      puts 'saving error' # todo: replace
+    respond_to do |format|
+      if @worktime.update worktime_params
+        set_worktimes only_day @worktime.date_from
+        format.js
+      else
+        format.js { render json: @worktime.errors }
+      end
     end
   end
 

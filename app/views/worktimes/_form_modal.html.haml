@@ -14,11 +14,15 @@
 
           .form-group
             = f.label :time_from, 'Time from:', class: 'col-xs-3 control-label'
-            .col-xs-5= f.text_field :time_from, class: 'form-control', placeholder: 'ex. 09:00'
+            .col-xs-9
+              = f.text_field :time_from, class: 'form-control', placeholder: 'ex. 09:00'
+              %span.help-block
 
           .form-group
             = f.label :time_to, 'Time to:', class: 'col-xs-3 control-label'
-            .col-xs-5= f.text_field :time_to, class: 'form-control', placeholder: 'ex. 17:00'
+            .col-xs-9
+              = f.text_field :time_to, class: 'form-control', placeholder: 'ex. 17:00'
+              %span.help-block
 
           .modal-footer
             %button.btn.btn-default{'data-dismiss' => 'modal'} Close

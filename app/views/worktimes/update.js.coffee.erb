@@ -1,7 +1,7 @@
 'use strict'
 
-$('#edit-record-modal #day-record-form').modal 'hide'
+TimeTracker.WorkTimes.Modals.hide 'edit'
 
 setTimeout ->
-  $('#day-records').empty().append '<%= j render 'day_records' %>'
+  $('#day-records').empty().append '<%= j render "day_records" %>'
 , 300

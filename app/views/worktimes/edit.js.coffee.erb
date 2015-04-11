@@ -2,4 +2,5 @@
 
 $('#edit-record-modal').empty().append '<%= j render 'form_modal', action: 'edit' %>'
 
-$('#edit-record-modal #day-record-form').modal 'show'
+TimeTracker.WorkTimes.FormErrors.init 'edit'
+TimeTracker.WorkTimes.Modals.open 'edit'
