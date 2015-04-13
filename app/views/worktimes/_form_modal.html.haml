@@ -15,13 +15,13 @@
           .form-group
             = f.label :time_from, 'Time from:', class: 'col-xs-3 control-label'
             .col-xs-9
-              = f.text_field :time_from, class: 'form-control', placeholder: 'ex. 09:00'
+              = text_field_tag 'worktime[time_from]', @worktime.time_from, class: 'form-control', placeholder: 'ex. 09:00'
               %span.help-block
 
           .form-group
             = f.label :time_to, 'Time to:', class: 'col-xs-3 control-label'
             .col-xs-9
-              = f.text_field :time_to, class: 'form-control', placeholder: 'ex. 17:00'
+              = text_field_tag 'worktime[time_to]', @worktime.time_to, class: 'form-control', placeholder: 'ex. 09:00'
               %span.help-block
 
           .modal-footer

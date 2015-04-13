@@ -1,3 +1,10 @@
+GIT
+  remote: https://github.com/kernel-io/validates_timeliness.git
+  revision: d308c3da73df595bf2542b821a54ddcea974625f
+  specs:
+    jc-validates_timeliness (3.1.1)
+      timeliness (~> 0.3.7)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -215,6 +222,7 @@ GEM
     thor (0.19.1)
     thread_safe (0.3.5)
     tilt (1.4.1)
+    timeliness (0.3.7)
     timers (4.0.1)
       hitimes
     tzinfo (1.2.2)
@@ -255,6 +263,7 @@ DEPENDENCIES
   haml
   haml-rails
   jbuilder (~> 2.0)
+  jc-validates_timeliness!
   jquery-rails
   mandrill_mailer
   pg

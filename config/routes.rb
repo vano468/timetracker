@@ -20,5 +20,5 @@ Rails.application.routes.draw do
     get :boss_disapprove, on: :member
   end
 
-  root to: redirect('worktime')
+  root to: redirect('worktimes')
 end

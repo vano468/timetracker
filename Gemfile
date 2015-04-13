@@ -14,6 +14,7 @@ gem 'breadcrumbs_on_rails'
 gem 'simple_calendar', '~> 1.1.0'
 gem 'bootstrap-sass', '~> 3.3.4'
 gem 'font-awesome-rails'
+gem 'jc-validates_timeliness', git: 'https://github.com/kernel-io/validates_timeliness.git'
 
 gem 'devise'
 gem 'wisper'
