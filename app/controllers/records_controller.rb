@@ -4,11 +4,8 @@ class RecordsController < ApplicationController
   end
 
   def create
-    #TODO: add record_params here
-    @record = Record.new
+    @record = Record.new record_params
     @record.user = current_user
-    #TODO: type must be read from params
-    @record.type = 'Vacation'
     if @record.save
       redirect_to pending_records_path
     else
@@ -55,6 +52,6 @@ class RecordsController < ApplicationController
 private
 
   def record_params
-    params
+    params.require(:record).permit(:type, :date_from, :date_to)
   end
 end
