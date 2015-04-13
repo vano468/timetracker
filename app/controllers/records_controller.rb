@@ -27,7 +27,7 @@ class RecordsController < ApplicationController
   end
 
   def pending
-    @records = PendingDepartmentRecordsByType.result(current_user, 'Vacation')
+    @records = PendingRecordsForBoss.result current_user
   end
 
   def requested
@@ -52,6 +52,17 @@ class RecordsController < ApplicationController
 private
 
   def record_params
-    params.require(:record).permit(:type, :date_from, :date_to, :emails)
+    if params.has_key? :record
+      return params.require(:record).permit(:type, :date_from, :date_to, :emails)
+    end
+    if params.has_key? :vacation
+      return params.require(:vacation).permit(:type, :date_from, :date_to, :emails)
+    end
+    if params.has_key? :day_off
+      return params.require(:day_off).permit(:type, :date_from, :date_to, :emails)
+    end
+    if params.has_key? :sickness
+      return params.require(:sickness).permit(:type, :date_from, :date_to, :emails)
+    end
   end
 end

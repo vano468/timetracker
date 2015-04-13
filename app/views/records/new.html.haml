@@ -1,8 +1,8 @@
 %h1 Record
 %h2 New
 
-= form_for @record do |f|
- = f.select :type, [['Vacation', 'Vacation'], ['Sickness', 'Sickness']]
+= form_for @record, url: records_path do |f|
+ = f.select :type, [['Vacation', 'Vacation'], ['Sickness', 'Sickness'], ['Day Off', 'DayOff']]
  %br
  = f.date_select :date_from
  %br
