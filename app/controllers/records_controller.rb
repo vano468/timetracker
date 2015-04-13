@@ -52,6 +52,6 @@ class RecordsController < ApplicationController
 private
 
   def record_params
-    params.require(:record).permit(:type, :date_from, :date_to)
+    params.require(:record).permit(:type, :date_from, :date_to, :emails)
   end
 end
