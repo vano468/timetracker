@@ -8,6 +8,8 @@
  %br
  = f.date_select :date_to
  %br
- = f.text_field :emails
+ = f.text_field :emails, placeholder: 'Emails'
+ %br
+ = f.text_area :comment, placeholder: 'Comment'
  %br
  = f.submit

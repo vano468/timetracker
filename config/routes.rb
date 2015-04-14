@@ -18,6 +18,7 @@ Rails.application.routes.draw do
     get :requested, on: :collection
     get :boss_approve,    on: :member
     get :boss_disapprove, on: :member
+    resources :comments, except: [:index, :show]
   end
 
   root to: redirect('worktimes')

@@ -1,11 +1,16 @@
 class Record < ActiveRecord::Base
+
   belongs_to :user
+
+  has_many :comments
 
   validate :date_from_lesser_than_date_to
   validate :dates_cannot_be_in_the_past unless "type == 'Worktime'"
 
   after_save :send_notifications
+
 private
+
   def send_notifications
     puts "Let's send some notifications for those emails: #{emails}"
   end
@@ -24,4 +29,5 @@ private
       errors.add :date_to, "can't be in the past"
     end
   end
+
 end

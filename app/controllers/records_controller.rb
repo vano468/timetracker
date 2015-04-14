@@ -7,6 +7,7 @@ class RecordsController < ApplicationController
     @record = Record.new record_params
     @record.user = current_user
     if @record.save
+      Comment.create message: params[:comment], record: @record, user: current_user
       redirect_to pending_records_path
     else
       render 'new'
