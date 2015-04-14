@@ -14,10 +14,12 @@ Rails.application.routes.draw do
   resources :users, only: [:show], concerns: :stats
   resources :worktimes, only: [:index, :show, :create, :edit, :update, :destroy]
   resources :records do
-    get :pending,   on: :collection
-    get :requested, on: :collection
+    get :pending,     on: :collection
+    get :requested,   on: :collection
+    get :bookkeeping, on: :collection
     get :boss_approve,    on: :member
     get :boss_disapprove, on: :member
+    get :bookkeeper_approve, on: :member
     resources :comments, except: [:index, :show]
   end
 

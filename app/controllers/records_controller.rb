@@ -1,5 +1,7 @@
 class RecordsController < ApplicationController
 
+  before_action :set_record, only: [:boss_approve, :boss_disapprove, :bookkeeper_approve, :edit, :update, :destroy]
+
   def index
   end
 
@@ -37,16 +39,23 @@ class RecordsController < ApplicationController
     @records = current_user.records
   end
 
+  def bookkeeping
+    #TODO: should display only relevant records (last month)
+    @records = Record.all.where(bookkeeper_approved: nil, type: %w[Vacation Sickness])
+  end
 
   def boss_approve
-    @record = Record.find params[:id]
     @record.update_attribute :boss_approved, true
     redirect_to :back
   end
 
   def boss_disapprove
-    @record = Record.find params[:id]
     @record.update_attribute :boss_approved, false
+    redirect_to :back
+  end
+
+  def bookkeeper_approve
+    @record.update_attribute :bookkeeper_approved, true
     redirect_to :back
   end
 
@@ -65,5 +74,9 @@ private
     if params.has_key? :sickness
       return params.require(:sickness).permit(:type, :date_from, :date_to, :emails)
     end
+  end
+
+  def set_record
+    @record = Record.find params[:id]
   end
 end
