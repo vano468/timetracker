@@ -16,7 +16,7 @@ private
   end
 
   def date_from_lesser_than_date_to
-    if date_from < date_to
+    if date_from > date_to
       errors.add :date_to, "can't be before date_from"
     end
   end
