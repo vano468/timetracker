@@ -29,4 +29,8 @@ private
     self.time_to   = only_time self.date_to
     self.day = only_day self.date_from
   end
+
+  def date_from_lesser_than_date_to
+    errors.add :time_to, 'can\'t be before or equal date_from' if date_from >= date_to
+  end
 end

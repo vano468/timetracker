@@ -62,17 +62,8 @@ class RecordsController < ApplicationController
 private
 
   def record_params
-    if params.has_key? :record
-      return params.require(:record).permit(:type, :date_from, :date_to, :emails)
-    end
-    if params.has_key? :vacation
-      return params.require(:vacation).permit(:type, :date_from, :date_to, :emails)
-    end
-    if params.has_key? :day_off
-      return params.require(:day_off).permit(:type, :date_from, :date_to, :emails)
-    end
-    if params.has_key? :sickness
-      return params.require(:sickness).permit(:type, :date_from, :date_to, :emails)
+    [:record, :vacation, :day_off, :sickness].each do |type|
+      return params.require(type).permit(:type, :date_from, :date_to, :emails) if params.has_key? type
     end
   end
 
