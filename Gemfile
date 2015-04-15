@@ -18,6 +18,7 @@ gem 'jc-validates_timeliness', git: 'https://github.com/kernel-io/validates_time
 gem 'role_model'
 
 gem 'devise'
+gem 'switch_user'
 gem 'wisper'
 gem 'wisper-celluloid'
 gem 'mandrill_mailer'
@@ -35,7 +36,6 @@ group :development do
 end
 
 group :development, :test do
-  gem 'switch_user'
   gem 'spring'
   gem 'rspec-rails'
   gem 'capybara'
