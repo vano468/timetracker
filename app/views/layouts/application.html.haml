@@ -5,7 +5,12 @@
     = stylesheet_link_tag 'application', media: 'all'
     = csrf_meta_tags
   %body
-    = render 'layouts/menu'
-    .container
-      = yield
-    = javascript_include_tag 'application'
+    / todo: refactor this fucking shit
+    - if current_user or current_page?(new_user_session_path)
+      = render 'layouts/menu'
+      .container
+        = yield
+      = javascript_include_tag 'application'
+    - else
+      .container
+        %h1= link_to 'Sign in', new_user_session_path

@@ -1,5 +1,10 @@
 .container
-  = switch_user_select
+  - if current_user
+    = current_user.email
+    = link_to 'Logout', destroy_user_session_path, method: :delete
+  - if Rails.env.development?
+    = switch_user_select
+  = link_to 'Calendar', worktimes_path
   = link_to 'Create new record', new_record_path
   = link_to 'Pending records', pending_records_path
   = link_to 'Requested records', requested_records_path

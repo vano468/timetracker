@@ -1,6 +1,6 @@
 d = Department.create title: 'Numero Uno'
-e  = d.employees.create email: 'employee@company.org',       password: Devise.friendly_token[0,20]
-b  = d.employees.create email: 'boss@company.org',           password: Devise.friendly_token[0,20]
-bk = d.employees.create email: 'bookkeeper@company.org',     password: Devise.friendly_token[0,20]
+em = d.employees.create email: 'em@isolat.co', password: '123456789'
+bs = d.employees.create email: 'bs@isolat.co', password: '123456789'
+bk = d.employees.create email: 'bk@isolat.co', password: '123456789'
 bk.roles << :bookkeeper
-b.boss_of = d
+bs.boss_of = d
