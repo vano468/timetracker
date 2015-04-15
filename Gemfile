@@ -28,7 +28,10 @@ group :development do
   gem 'better_errors'
   gem 'byebug'
   gem 'web-console', '~> 2.0'
+  # Linters
   gem 'rubocop'
+  gem 'haml-lint'
+  gem 'coffeelint'
 end
 
 group :development, :test do
