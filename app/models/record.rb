@@ -5,7 +5,7 @@ class Record < ActiveRecord::Base
   has_many :comments
 
   validate :date_from_lesser_than_date_to
-  validate :dates_cannot_be_in_the_past unless "type == 'Worktime'"
+  validate :dates_cannot_be_in_the_past unless Proc.new { |record| record.is_a? Worktime}
 
   after_save :send_notifications
 

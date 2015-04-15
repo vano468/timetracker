@@ -6,7 +6,7 @@ class Worktime < Record
   validates_time :time_from
   validates_time :time_to
 
-  before_save :build_record
+  before_validation :build_record
   after_find  :update_attrs
 
   scope :user, -> (user) { where user: user }
