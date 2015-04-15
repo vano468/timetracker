@@ -28,6 +28,7 @@ group :development do
   gem 'better_errors'
   gem 'byebug'
   gem 'web-console', '~> 2.0'
+  gem 'rubocop'
 end
 
 group :development, :test do
@@ -38,4 +39,3 @@ group :development, :test do
   gem 'factory_girl_rails'
   gem 'faker'
 end
-
