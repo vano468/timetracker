@@ -6,6 +6,8 @@
     = switch_user_select
   = link_to 'Calendar', worktimes_path
   = link_to 'Create new record', new_record_path
-  = link_to 'Pending records', pending_records_path
+  - if can? :pending, Record
+    = link_to 'Pending records', pending_records_path
   = link_to 'Requested records', requested_records_path
-  = link_to 'Bookkeeping', bookkeeping_records_path
+  - if can? :bookkeeping, Record
+    = link_to 'Bookkeeping', bookkeeping_records_path
