@@ -13,3 +13,4 @@
         %td= r.type
         %td= (r.boss_approved == nil ? 'pending' : r.boss_approved)
         %td= link_to 'Add comment', new_record_comment_path(r)
+        %td= link_to 'Delete', record_path(r), method: :delete

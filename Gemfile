@@ -16,6 +16,7 @@ gem 'bootstrap-sass', '~> 3.3.4'
 gem 'font-awesome-rails'
 gem 'jc-validates_timeliness', git: 'https://github.com/kernel-io/validates_timeliness.git'
 gem 'role_model'
+gem 'cancancan'
 
 gem 'devise'
 gem 'wisper'
