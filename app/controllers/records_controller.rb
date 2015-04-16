@@ -1,5 +1,7 @@
 class RecordsController < ApplicationController
 
+  authorize_resource
+
   before_action :set_record, only: [:boss_approve, :boss_disapprove, :bookkeeper_approve, :edit, :update, :destroy]
 
   def index
@@ -10,7 +12,7 @@ class RecordsController < ApplicationController
     @record.user = current_user
     if @record.save
       Comment.create message: params[:comment], record: @record, user: current_user
-      redirect_to pending_records_path
+      redirect_to requested_records_path
     else
       render 'new'
     end
