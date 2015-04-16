@@ -31,6 +31,8 @@ private
   end
 
   def date_from_lesser_than_date_to
-    errors.add :time_to, 'can\'t be before or equal date_from' if date_from >= date_to
+    if date_from >= date_to
+      errors.add :time_to, 'can\'t be before or equal date_from'
+    end
   end
 end

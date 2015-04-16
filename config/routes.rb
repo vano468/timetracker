@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   devise_for :users
 
-  scope :admin, module: :admin do
+  namespace :admin do
     resources :departments, except: [:index, :show]
     resources :users, except: [:index, :show]
   end

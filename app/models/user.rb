@@ -9,5 +9,11 @@ class User < ActiveRecord::Base
   has_many :records
   has_many :comments
 
+  scope :without_department, -> { where department: nil }
+
+  def self.by_department(department)
+    where department: department
+  end
+
   devise :database_authenticatable, :rememberable, :trackable, :validatable
 end
