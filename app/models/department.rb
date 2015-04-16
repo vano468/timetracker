@@ -1,4 +1,6 @@
 class Department < ActiveRecord::Base
+  include Hierarchy
+
   belongs_to :parent,  class_name: 'Department', foreign_key: 'parent_id'
   belongs_to :boss,    class_name: 'User',       foreign_key: 'boss_id'
 
