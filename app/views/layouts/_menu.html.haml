@@ -10,6 +10,7 @@
     = switch_user_select
 
   = link_to 'Calendar', worktimes_path
+  = link_to 'Departments', departments_path
   = link_to 'Create new record', new_record_path
   - if can? :pending, Record
     = link_to 'Pending records', pending_records_path

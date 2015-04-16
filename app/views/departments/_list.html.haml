@@ -1,4 +1,8 @@
 = link_to 'Add department', new_admin_department_path, remote: true
 %br
-= render partial: 'department', collection: @departments
-= render partial: 'users/user', collection: @users
+
+%h3 departments
+= render(@departments) || 'No records'
+
+%h3 employees
+= render(@users) || 'No records'
