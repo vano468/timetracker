@@ -1,6 +1,7 @@
 class WorktimesController < ApplicationController
   include CalendarHelper
 
+  authorize_resource
   before_action :set_worktime, only: [:edit, :update, :destroy]
 
   def index

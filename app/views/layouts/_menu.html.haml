@@ -1,9 +1,14 @@
 .container
   - if current_user
-    = current_user.email
-    = link_to 'Logout', destroy_user_session_path, method: :delete
+    %h1
+      = current_user.email
+      = link_to 'Logout', destroy_user_session_path, method: :delete
+  - else
+    %h1= link_to 'Sign in', new_user_session_path
+
   - if Rails.env.development?
     = switch_user_select
+
   = link_to 'Calendar', worktimes_path
   = link_to 'Create new record', new_record_path
   - if can? :pending, Record
