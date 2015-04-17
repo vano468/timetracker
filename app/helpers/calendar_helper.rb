@@ -1,7 +1,7 @@
 module CalendarHelper
   def calendar_options
-    today = today_format
-    month = Time.now.month
+    today = DateTime.now.strftime '%Y-%m-%d'
+    month = DateTime.now.month
     @calendar_options = {
         table: { class: 'calendar-body' },
         tr: { class: 'calendar-row' },
@@ -10,38 +10,5 @@ module CalendarHelper
             data: { day: current_calendar_date.to_s }
         }}
     }
-  end
-
-  def day_title_format(date)
-    date = DateTime.parse date unless date.instance_of? DateTime
-    "#{Date::MONTHNAMES[date.month]} #{date.day}"
-  end
-
-  def title_by_action(action)
-    if action == 'create'
-      'Create WorkTime Record'
-    else
-      'Edit WorkTime Record'
-    end
-  end
-
-  def btn_text_by_action(action)
-    if action == 'create'
-      'Create'
-    else
-      'Save'
-    end
-  end
-
-  def today_format
-    DateTime.now.strftime '%Y-%m-%d'
-  end
-
-  def only_day(datetime)
-    datetime.strftime '%Y-%m-%d'
-  end
-
-  def only_time(datetime)
-    datetime.strftime '%H:%M'
   end
 end

@@ -36,7 +36,6 @@ class RecordsController < ApplicationController
   end
 
   def requested
-    return unless current_user.present?
     #TODO: should display only relevant records (this month?)
     @records = current_user.records
   end

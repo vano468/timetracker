@@ -1,11 +1,9 @@
 class WorktimesController < ApplicationController
-  include CalendarHelper
-
   authorize_resource
   before_action :set_worktime, only: [:edit, :update, :destroy]
 
   def index
-    set_worktimes today_format
+    set_worktimes DateTime.now.strftime '%Y-%m-%d'
   end
 
   def show
@@ -22,7 +20,7 @@ class WorktimesController < ApplicationController
 
     respond_to do |format|
       if @worktime.save
-        set_worktimes only_day @worktime.date_from
+        set_worktimes
         format.js
       else
         format.js { render json: @worktime.errors }
@@ -40,7 +38,7 @@ class WorktimesController < ApplicationController
   def update
     respond_to do |format|
       if @worktime.update worktime_params
-        set_worktimes only_day @worktime.date_from
+        set_worktimes
         format.js
       else
         format.js { render json: @worktime.errors }
@@ -54,14 +52,14 @@ class WorktimesController < ApplicationController
 
 private
 
-  def set_worktimes(day)
-    @worktimes = Worktime.user(current_user).day day
-    @worktime  = Worktime.new
-    @worktime.day = day
+  def set_worktimes(day = nil)
+    day = WorktimeDecorator.decorate(@worktime).only_day unless @worktime.nil?
+    @worktimes = Worktime.user(current_user).for_day(day).decorate
+    @worktime  = Worktime.new(day: day).decorate
   end
 
   def set_worktime
-    @worktime = Worktime.find params[:id]
+    @worktime = Worktime.find(params[:id]).decorate
   end
 
   def worktime_params
