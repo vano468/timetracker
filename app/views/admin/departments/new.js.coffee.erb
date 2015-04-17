@@ -1,3 +1,4 @@
 'use strict'
 
-alert '<%= Rails.application.routes.recognize_path(request.referrer)[:id] %>'
+TimeTracker.Replace.modal 'new-department', '<%= j render "form_modal" %>'
+TimeTracker.Modals.open   'new-department'

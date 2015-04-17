@@ -1,0 +1,21 @@
+.modal.fade
+  .modal-dialog
+    .modal-content
+
+      .modal-header
+        %button.close{'aria-hidden' => 'true', 'data-dismiss' => 'modal', type: 'button'} ×
+        %h4.modal-title
+          New department
+
+      .modal-body
+        = form_for @department, html: { class: 'form-horizontal' } do |f|
+
+          .form-group
+            = f.label :title, class: 'col-xs-2 control-label'
+            .col-xs-10
+              = f.text_field :title, class: 'form-control'
+              %span.help-block
+
+          .modal-footer
+            %button.btn.btn-default{'data-dismiss' => 'modal'} Close
+            %button.btn.btn-primary{type: 'submit'} Save

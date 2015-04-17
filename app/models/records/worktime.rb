@@ -10,8 +10,7 @@ class Worktime < Record
 
   def self.for_day(day)
     from = DateTime.parse day
-    to   = from + 1.day
-    where 'date_from >= ? and date_to <= ?', from, to
+    where 'date_from >= ? and date_to <= ?', from, from + 1.day
   end
 
 private

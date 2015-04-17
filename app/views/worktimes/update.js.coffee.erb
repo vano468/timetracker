@@ -1,7 +1,4 @@
 'use strict'
 
-TimeTracker.WorkTimes.Modals.hide 'edit'
-
-setTimeout ->
-  $('#day-records').empty().append '<%= j render "day_records" %>'
-, 300
+TimeTracker.Modals.hide     'edit-record'
+TimeTracker.Replace.content 'day-records', '<%= j render "day_records" %>'

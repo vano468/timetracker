@@ -1,6 +1,5 @@
 'use strict'
 
-$('#edit-record-modal').empty().append '<%= j render 'form_modal' %>'
-
-TimeTracker.WorkTimes.FormErrors.init 'edit'
-TimeTracker.WorkTimes.Modals.open 'edit'
+TimeTracker.Replace.modal 'edit-record', '<%= j render "form_modal" %>'
+TimeTracker.Modals.open   'edit-record'
+TimeTracker.FormErrors.init 'edit'
