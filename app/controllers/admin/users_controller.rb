@@ -45,7 +45,7 @@ class Admin::UsersController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit(:email, :password, :department_id)
+    params.require(:user).permit(:email, :password, :department_id, :first_name, :middle_name, :last_name)
   end
 
   def set_departments

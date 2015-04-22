@@ -5,6 +5,7 @@
 %table.table.table-responsive
   %thead
     %th ID
+    %th Name
     %th Email
     %th Department
     %th Boss of
@@ -13,6 +14,7 @@
     - @users.each do |u|
       %tr
         %td= link_to u.id, edit_admin_user_path(u)
+        %td= "#{u.first_name} #{u.middle_name} #{u.last_name}"
         %td= u.email
         %td= u.department.title unless u.department.nil?
         %td= u.boss_of.title unless u.boss_of.nil?
