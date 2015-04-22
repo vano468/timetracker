@@ -37,7 +37,7 @@ class RecordsController < ApplicationController
 
   def requested
     #TODO: should display only relevant records (this month?)
-    @records = current_user.records
+    @records = current_user.records.where.not(type: 'Worktime')
   end
 
   def bookkeeping
