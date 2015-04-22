@@ -3,7 +3,7 @@ Rails.application.routes.draw do
 
   namespace :admin do
     resources :departments, except: [:index, :show]
-    resources :users, except: [:index, :show]
+    resources :users, except: [:show]
   end
 
   concern :stats do

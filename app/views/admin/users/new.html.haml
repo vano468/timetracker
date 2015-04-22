@@ -1,2 +1,11 @@
 %h1 User
 %h2 ADMIN - New
+
+= form_for @user, url: admin_users_path do |f|
+  = f.text_field :email, placeholder: 'Email'
+  %br
+  = f.text_field :password, placeholder: 'Password'
+  %br
+  = f.collection_select :department_id, Department.all, :id, :title, prompt: 'Department...'
+  %br
+  = f.submit

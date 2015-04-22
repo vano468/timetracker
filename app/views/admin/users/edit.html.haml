@@ -1,2 +1,8 @@
-%h1 User
+%h1= "User #{@user.email}"
 %h2 ADMIN - Edit
+= form_for @user, url: admin_user_path do |f|
+  = f.text_field :email, placeholder: 'Email'
+  %br
+  = f.collection_select :department_id, Department.all, :id, :title, prompt: 'Department...'
+  %br
+  = f.submit

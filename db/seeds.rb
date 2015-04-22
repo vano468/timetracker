@@ -9,6 +9,12 @@ em = d1.employees.create email: 'em@isolat.co', password: '123456789'
 bs = d1.employees.create email: 'bs@isolat.co', password: '123456789'
 bk = d1.employees.create email: 'bk@isolat.co', password: '123456789'
 
+ad = User.create email: 'ad@isolat.co', password: '123456789'
+
 bk.roles << :bookkeeper
 bk.save
+
+ad.roles << :admin
+ad.save
+
 bs.boss_of = d1

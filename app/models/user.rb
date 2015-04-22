@@ -10,6 +10,7 @@ class User < ActiveRecord::Base
   has_many :comments
 
   scope :without_department, -> { where department: nil }
+  scope :ordered, -> { order :id }
 
   def self.by_department(department)
     where department: department
