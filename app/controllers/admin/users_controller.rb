@@ -9,17 +9,16 @@ class Admin::UsersController < ApplicationController
 
   def create
     @user = User.new user_params
-    puts @user.as_json
     if @user.save
       redirect_to admin_users_path
     else
-      puts @user.errors.as_json
       render 'new'
     end
   end
 
   def new
-    @user = User.new
+    department_id = Rails.application.routes.recognize_path(request.referrer)[:id]
+    @user = User.new department_id: department_id
   end
 
   def edit

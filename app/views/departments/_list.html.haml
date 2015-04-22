@@ -5,6 +5,8 @@
 = render(@departments) || 'No records'
 
 %h3 employees
+= link_to 'Create employee', new_admin_user_path
+%br
 = render(@users) || 'No records'
 
 #new-department-modal
