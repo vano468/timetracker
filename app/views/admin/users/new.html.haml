@@ -6,6 +6,6 @@
   %br
   = f.text_field :password, placeholder: 'Password'
   %br
-  = f.collection_select :department_id, Department.all, :id, :title, prompt: 'Department...'
+  = f.collection_select :department_id, @departments, :id, :hierarchy_title, prompt: 'Department...'
   %br
   = f.submit

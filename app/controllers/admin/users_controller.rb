@@ -1,6 +1,7 @@
 class Admin::UsersController < ApplicationController
 
   before_action :set_user, only: [:edit, :update, :destroy]
+  before_action :set_departments, only: [:edit, :new]
 
   def index
     @users = User.all.ordered
@@ -39,12 +40,17 @@ class Admin::UsersController < ApplicationController
 
   private
 
+
   def set_user
     @user = User.find params[:id]
   end
 
   def user_params
     params.require(:user).permit(:email, :password, :department_id)
+  end
+
+  def set_departments
+    @departments = Department.hierarchy_tree
   end
 
 end
