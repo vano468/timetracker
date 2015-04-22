@@ -18,10 +18,6 @@ class RecordsController < ApplicationController
     end
   end
 
-  def new
-    @record = Record.new
-  end
-
   def edit
   end
 
@@ -31,17 +27,32 @@ class RecordsController < ApplicationController
   def destroy
   end
 
+  def vacation
+    @record = Vacation.new
+    render 'new'
+  end
+
+  def sickness
+    @record = Sickness.new
+    render 'new'
+  end
+
+  def day_off
+    @record = DayOff.new
+    render 'new'
+  end
+
   def pending
     @records = PendingRecordsForBoss.result current_user
   end
 
   def requested
-    #TODO: should display only relevant records (this month?)
+    # TODO: should display only relevant records (this month?)
     @records = current_user.records.where.not(type: 'Worktime')
   end
 
   def bookkeeping
-    #TODO: should display only relevant records (last month)
+    # TODO: should display only relevant records (last month)
     @records = Record.all.where(bookkeeper_approved: nil, type: %w[Vacation Sickness])
   end
 

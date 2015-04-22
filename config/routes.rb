@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   resources :users, only: [:show], concerns: :stats
   resources :worktimes, only: [:index, :show, :create, :edit, :update, :destroy]
   resources :records do
+    get :vacation, :sickness, :day_off, on: :new
     get :pending,     on: :collection
     get :requested,   on: :collection
     get :bookkeeping, on: :collection
