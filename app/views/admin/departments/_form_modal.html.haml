@@ -8,7 +8,7 @@
           New department
 
       .modal-body
-        = form_for @department, html: { class: 'form-horizontal' } do |f|
+        = form_for @department, url: admin_departments_path, remote: true, html: { class: 'form-horizontal' } do |f|
 
           .form-group
             = f.label :title, class: 'col-xs-2 control-label'
