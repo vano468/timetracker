@@ -11,7 +11,7 @@
       %th
     - @records.each do |r|
       %tr
-        %td= r.id
+        %td= link_to r.id, record_path(r)
         %td= r.type
         %td= (r.boss_approved == nil ? 'pending' : r.boss_approved)
         %td= link_to 'Add comment', new_record_comment_path(r)

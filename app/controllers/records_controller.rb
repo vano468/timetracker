@@ -2,7 +2,7 @@ class RecordsController < ApplicationController
 
   authorize_resource
 
-  before_action :set_record, only: [:boss_approve, :boss_disapprove, :bookkeeper_approve, :edit, :update, :destroy]
+  before_action :set_record, only: [:show, :boss_approve, :boss_disapprove, :bookkeeper_approve, :edit, :update, :destroy]
 
   def index
   end

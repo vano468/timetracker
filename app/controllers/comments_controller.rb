@@ -6,7 +6,7 @@ class CommentsController < ApplicationController
     @comment = @record.comments.new comment_params
     @comment.user = current_user
     if @comment.save
-      redirect_to requested_records_path
+      redirect_to record_path(@record)
     else
       render 'new'
     end

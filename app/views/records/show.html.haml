@@ -1,2 +1,11 @@
-%h1 Record
-%h2 Show
+%h1= "Record ##{@record.id}"
+%h2 Comments
+%table.table.table-responsive
+  %thead
+    %th User
+    %th Message
+  %tbody
+    - @record.comments.each do |c|
+      %tr
+        %td= c.user.email
+        %td= c.message

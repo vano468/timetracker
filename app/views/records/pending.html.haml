@@ -20,7 +20,7 @@
         %td= r.user.email
         %td= r.date_from.to_date unless r.date_from.nil?
         %td= r.date_to.to_date unless r.date_from.nil?
-        %td= r.comments.count
+        %td= link_to r.comments.count, record_path(r)
         %td= link_to 'Add comment', new_record_comment_path(r)
         %td= link_to 'Approve', boss_approve_record_path(r)
         %td= link_to 'Disapprove', boss_disapprove_record_path(r)
