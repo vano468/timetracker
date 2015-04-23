@@ -10,7 +10,7 @@ module Department::Hierarchy
   end
 
   def hierarchy_title
-    "#{'-' * (hierarchy.count - 1)} #{title}"
+    "#{'―' * (hierarchy.count - 1)} #{title}"
   end
 
   def self.included(base)
@@ -20,14 +20,13 @@ module Department::Hierarchy
   module ClassMethods
     def hierarchy_tree
       result = []
-      Department.top_level.order(:id).each do |d|
+      top_level.order(:id).each do |d|
         add_children_of_parent d, result
       end
       result
     end
 
     def add_children_of_parent(parent, result)
-      puts parent.title
       result << parent
       return if parent.children.blank?
       parent.children.each do |child|
