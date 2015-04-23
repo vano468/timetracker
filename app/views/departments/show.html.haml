@@ -3,6 +3,6 @@
 
 %h1
   Children by
-  = @department.title
+  = link_to @department.title, edit_admin_department_path(@department)
 
 = render 'list'

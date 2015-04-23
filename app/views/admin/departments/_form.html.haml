@@ -1,0 +1,8 @@
+= form_for @department, url: (@department.new_record? ? admin_departments_path : admin_department_path) do |f|
+  = f.text_field :title, placeholder: 'Title'
+  %br
+  = f.collection_select :parent_id, departments_hierarchy, :id, :hierarchy_title, prompt: 'Root'
+  %br
+  = f.collection_select :boss_id, User.all, :id, :email, prompt: 'Boss...'
+  %br
+  = f.submit

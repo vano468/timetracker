@@ -1,5 +1,4 @@
 class Admin::DepartmentsController < ApplicationController
-  before_action :set_departments, only: [:new, :edit]
   before_action :set_department, only: [:edit, :update, :destroy]
 
   def new
@@ -20,9 +19,17 @@ class Admin::DepartmentsController < ApplicationController
   end
 
   def update
+    @department.update department_params
+    if @department.save
+      redirect_to department_path @department
+    else
+      render 'edit'
+    end
   end
 
   def destroy
+    @department.destroy
+    redirect_to :back
   end
 
 private
@@ -31,11 +38,7 @@ private
     @department = Department.find params[:id]
   end
 
-  def set_departments
-    @departments = Department.hierarchy_tree
-  end
-
   def department_params
-    params.require(:department).permit(:title, :parent_id)
+    params.require(:department).permit(:title, :parent_id, :boss_id)
   end
 end
