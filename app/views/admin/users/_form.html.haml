@@ -1,15 +1,9 @@
-= form_for @user, url: (@user.new_record? ? admin_users_path : admin_user_path) do |f|
-  = f.text_field :first_name, placeholder: 'First name'
-  %br
-  = f.text_field :middle_name, placeholder: 'Middle name'
-  %br
-  = f.text_field :last_name, placeholder: 'Last name'
-  %br
-  = f.text_field :email, placeholder: 'Email'
-  - if @user.new_record?
-    %br
-    = f.text_field :password, placeholder: 'Password'
-  %br
-  = f.collection_select :department_id, Department.hierarchy_tree, :id, :hierarchy_title, prompt: 'Department...'
-  %br
-  = f.submit
+= simple_form_for @user, html: { class: 'form-horizontal' }, wrapper: :horizontal_form, url: @user.new_record? ? admin_users_path : admin_user_path do |f|
+  .row= f.input :first_name, placeholder: 'George', wrapper_html: { class: 'col-sm-6' }
+  .row= f.input :middle_name, placeholder: 'Walton', wrapper_html: { class: 'col-sm-6' }
+  .row= f.input :last_name, placeholder: 'Lucas', wrapper_html: { class: 'col-sm-6' }
+  .row= f.input :email, placeholder: 'father@lucasarts.com', wrapper_html: { class: 'col-sm-6' }
+  .row= f.input :department_id, collection: Department.hierarchy_tree, prompt: 'Root', wrapper_html: { class: 'col-sm-6' }
+  .row
+    .col-sm-6
+      .col-sm-offset-3= f.submit class: 'btn btn-primary'
