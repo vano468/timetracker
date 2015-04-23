@@ -1,6 +1,6 @@
-class Record < ActiveRecord::Base
-  require 'valid_email/email_validator'
+require 'valid_email/email_validator'
 
+class Record < ActiveRecord::Base
   belongs_to :user
   has_many :comments
 
