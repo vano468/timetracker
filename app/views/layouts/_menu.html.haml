@@ -6,9 +6,6 @@
   - else
     %h1= link_to 'Sign in', new_user_session_path
 
-  - if Rails.env.development?
-    = switch_user_select
-
   = link_to 'Calendar', worktimes_path
   = link_to 'Departments', departments_path
   = link_to 'Users', admin_users_path

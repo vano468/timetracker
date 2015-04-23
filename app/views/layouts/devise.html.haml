@@ -1,0 +1,10 @@
+!!!
+%html
+  %head
+    %title= "#{t 'pages.sign_in'} - #{t 'title'}"
+    = stylesheet_link_tag 'devise', media: 'all'
+    = csrf_meta_tags
+  %body
+    - if Rails.env.development?
+      = switch_user_select
+    = yield

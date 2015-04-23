@@ -1,0 +1,13 @@
+.sign_in
+  .jumbotron
+    .container
+      %span.glyphicon.glyphicon-time
+      %h2= t 'title'
+
+      .box
+        = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+          = f.email_field :email, placeholder: 'email'
+          = f.password_field :password, placeholder: 'password'
+
+          %button.btn.btn-default.full-width
+            %span.glyphicon.glyphicon-ok
