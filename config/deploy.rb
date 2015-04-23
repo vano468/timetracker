@@ -6,7 +6,7 @@ require 'mina/rvm'
 set :rails_env, 'production'
 set :domain, '46.101.28.50'
 set :deploy_to, '/home/deployer/timetracker'
-set :repository, 'git@github.com:abrodskiy/isolat.co.git'
+set :repository, 'git@github.com:vano468/timetracker.git'
 set :branch, 'master'
 set :user, 'deployer'
 set :forward_agent, true
