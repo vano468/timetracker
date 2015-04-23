@@ -20,6 +20,7 @@ gem 'jc-validates_timeliness', git: 'https://github.com/kernel-io/validates_time
 gem 'role_model'
 gem 'cancancan'
 gem 'valid_email'
+gem 'simple_form'
 
 gem 'devise'
 gem 'wisper'

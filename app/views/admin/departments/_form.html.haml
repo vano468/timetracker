@@ -1,8 +1,5 @@
-= form_for @department, url: (@department.new_record? ? admin_departments_path : admin_department_path) do |f|
-  = f.text_field :title, placeholder: 'Title'
-  %br
-  = f.collection_select :parent_id, departments_hierarchy, :id, :hierarchy_title, prompt: 'Root'
-  %br
-  = f.collection_select :boss_id, User.all, :id, :email, prompt: 'Boss...'
-  %br
-  = f.submit
+= simple_form_for @department, url: @department.new_record? ? admin_departments_path : admin_department_path do |f|
+  .row= f.input :title, placeholder: 'Title', wrapper_html: { class: 'col-md-4' }
+  .row= f.input :parent_id, collection: Department.hierarchy_tree, prompt: 'Root', wrapper_html: { class: 'col-md-4' }
+  .row= f.input :boss_id, collection: User.all, label_method: :email, prompt: 'Mr. Nobody', wrapper_html: { class: 'col-md-4' }
+  = f.submit class: 'btn btn-primary'

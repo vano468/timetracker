@@ -1,7 +1,7 @@
 !!!
 %html
   %head
-    %title= "#{t 'pages.sign_in'} - #{t 'title'}"
+    %title= content_for?(:title) ? "#{yield(:title)} - #{t 'title'}": "#{t 'title'}"
     = stylesheet_link_tag 'devise', media: 'all'
     = csrf_meta_tags
   %body
