@@ -4,6 +4,7 @@ class Record < ActiveRecord::Base
 
   validate :date_from_lesser_than_date_to
   validate :dates_cannot_be_in_the_past unless proc { |record| record.is_a? Worktime}
+  validate :emails_should_be_valid
 
   after_save :send_notifications
 
@@ -25,6 +26,13 @@ private
     end
     if date_to.to_day < Date.today.to_day
       errors.add :date_to, 'can\'t be in the past'
+    end
+  end
+
+  def emails_should_be_valid
+    emails_array = emails.split
+    emails_array.each_with_index do |email, index|
+      errors.add("email_#{index}", "#{email} is invalid") unless ValidateEmail.valid? email
     end
   end
 end

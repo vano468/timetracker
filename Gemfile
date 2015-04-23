@@ -19,6 +19,7 @@ gem 'font-awesome-rails'
 gem 'jc-validates_timeliness', git: 'https://github.com/kernel-io/validates_timeliness.git'
 gem 'role_model'
 gem 'cancancan'
+gem 'valid_email', require: 'valid_email/validate_email'
 
 gem 'devise'
 gem 'wisper'
