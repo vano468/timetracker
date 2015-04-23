@@ -1,12 +1,19 @@
 class Admin::DepartmentsController < ApplicationController
-  include AjaxHelper
+  before_action :set_departments, only: [:new, :edit]
+  before_action :set_department, only: [:edit, :update, :destroy]
 
   def new
-    @department = Department.new
+    parent_id = Rails.application.routes.recognize_path(request.referrer)[:id]
+    @department = Department.new parent_id: parent_id
   end
 
   def create
-    Rails.application.routes.recognize_path(request.referrer)[:id]
+    @department = Department.new department_params
+    if @department.save
+      redirect_to department_path @department
+    else
+      render 'new'
+    end
   end
 
   def edit
@@ -18,4 +25,17 @@ class Admin::DepartmentsController < ApplicationController
   def destroy
   end
 
+private
+
+  def set_department
+    @department = Department.find params[:id]
+  end
+
+  def set_departments
+    @departments = Department.hierarchy_tree
+  end
+
+  def department_params
+    params.require(:department).permit(:title, :parent_id)
+  end
 end
