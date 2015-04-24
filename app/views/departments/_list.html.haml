@@ -1,11 +1,15 @@
 = link_to 'Add department', new_admin_department_path
 %br
 
+%h3 boss
+= @department.boss.present? ? link_to(@department.boss.email, @department.boss) : 'No boss yet'
+
 %h3 departments
 = render(@departments) || 'No records'
 
 %h3 employees
 = link_to 'Create employee', new_admin_user_path
+%br
 %br
 = render(@users) || 'No records'
 

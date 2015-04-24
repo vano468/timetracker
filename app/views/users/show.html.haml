@@ -1,2 +1,11 @@
-%h1 User
-%h2 Show
+%h1= "User #{@user.email}"
+
+.container
+  .row= "Name: #{@user.first_name} #{@user.middle_name} #{@user.last_name}"
+  .row
+    Department:
+    = link_to @user.department.title, @user.department
+  -if @user.boss_of.present?
+    .row
+      Boss of:
+      = link_to @user.boss_of.title, @user.boss_of
