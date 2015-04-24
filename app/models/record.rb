@@ -5,8 +5,7 @@ class Record < ActiveRecord::Base
   has_many :comments
 
   validate :date_from_lesser_than_date_to
-  validate :dates_cannot_be_in_the_past unless proc { |record| record.is_a? Worktime}
-  validate :emails_should_be_valid
+  validate :dates_cannot_be_in_the_past, :emails_should_be_valid unless proc { |record| record.is_a? Worktime}
 
   after_save :send_notifications
 
