@@ -2,4 +2,7 @@
   %a.panel-heading{href: department_path(department)}
     %h3.panel-title= department.title
   .panel-body
-    Panel content
+    Contains
+    = pluralize department.children.count, t('terms.department')
+    and
+    = pluralize department.employees.count, t('terms.employee')

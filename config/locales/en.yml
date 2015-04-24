@@ -22,7 +22,9 @@ en:
     vacation: Vacation
     day_off: Day off
     departments: 'Departments'
+    department: 'department'
     employees: 'Employees'
+    employee: 'employee'
 
   messages:
     not_contains_users: 'Not contains employees'
