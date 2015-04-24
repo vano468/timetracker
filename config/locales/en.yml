@@ -23,3 +23,7 @@ en:
     day_off: Day off
     departments: 'Departments'
     employees: 'Employees'
+
+  messages:
+    not_contains_users: 'Not contains employees'
+    not_contains_departments: 'Not contains sub departments'

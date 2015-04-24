@@ -4,7 +4,8 @@
   .row= "Name: #{@user.first_name} #{@user.middle_name} #{@user.last_name}"
   .row
     Department:
-    = link_to @user.department.title, @user.department
+    - if @user.department
+      = link_to @user.department.title, @user.department
   -if @user.boss_of.present?
     .row
       Boss of:

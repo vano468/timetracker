@@ -1,9 +1,13 @@
 .row
   .col-sm-6
     %h3= t 'terms.departments'
-    = render @departments
+    = contains = render @departments
+    - unless contains
+      .alert= t 'messages.not_contains_departments'
 
   .col-sm-6
     %h3= t 'terms.employees'
     .list-group
-      = render @users
+      = contains = render @users
+      - unless contains
+        .alert= t 'messages.not_contains_users'
