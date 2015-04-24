@@ -5,7 +5,7 @@
     = stylesheet_link_tag 'application', media: 'all'
     = csrf_meta_tags
   %body
-    = render 'layouts/menu'
     .container
+      = render 'layouts/menu'
       = yield
     = javascript_include_tag 'application'

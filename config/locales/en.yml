@@ -1,4 +1,19 @@
 en:
   title: TimeTracker
+
   pages:
     sign_in: 'Sign in'
+    requested: 'My requests'
+    calendar: 'Calendar'
+    departments: 'Hierarchy'
+
+  actions:
+    sign_out: 'Sign out'
+    add_request: 'Add request'
+    bookkeeping: 'Bookkeeping'
+    pending: 'Pending records'
+
+  terms:
+    sickness: Sickness
+    vacation: Vacation
+    day_off: Day off

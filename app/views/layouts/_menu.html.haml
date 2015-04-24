@@ -1,19 +1,45 @@
-.container
-  - if current_user
-    %h1
-      = current_user.email
-      = link_to 'Logout', destroy_user_session_path, method: :delete
-  - else
-    %h1= link_to 'Sign in', new_user_session_path
+%nav.navbar.navbar-default
+  .container-fluid
+    .navbar-header
+      %button.navbar-toggle.collapsed{"data-target" => "#bs-example-navbar-collapse-1", "data-toggle" => "collapse", :type => "button"}
+        %span.sr-only Toggle navigation
+        %span.icon-bar
+        %span.icon-bar
+        %span.icon-bar
+      %a.navbar-brand{href: '/'}= t 'title'
+    #bs-example-navbar-collapse-1.collapse.navbar-collapse
+      %ul.nav.navbar-nav
+        %li
+          = link_to t('pages.calendar'), worktimes_path
+        %li
+          = link_to t('pages.departments'), departments_path
+        %li.dropdown
+          %a.dropdown-toggle{"aria-expanded" => "false", "data-toggle" => "dropdown", :href => "#", :role => "button"}
+            = t 'actions.add_request'
+            %span.caret
+          %ul.dropdown-menu{role: 'menu'}
+            %li
+              = link_to t('terms.sickness'), sickness_new_record_path
+            %li
+              = link_to t('terms.vacation'), vacation_new_record_path
+            %li
+              = link_to t('terms.day_off'), day_off_new_record_path
 
-  = link_to 'Calendar', worktimes_path
-  = link_to 'Departments', departments_path
-  = link_to 'Users', admin_users_path
-  = link_to '+Sickness', sickness_new_record_path
-  = link_to '+Vacation', vacation_new_record_path
-  = link_to '+DayOff', day_off_new_record_path
-  = link_to 'Requested records', requested_records_path
-  - if can? :pending, Record
-    = link_to 'Pending records', pending_records_path
-  - if can? :bookkeeping, Record
-    = link_to 'Bookkeeping', bookkeeping_records_path
+      %ul.nav.navbar-nav.navbar-right
+
+        - if can? :pending, Record
+          %li= link_to 'Pending records', pending_records_path
+
+        - if can? :bookkeeping, Record
+          %li= link_to t('actions.bookkeeping'), bookkeeping_records_path
+
+        %li.dropdown
+          %a.dropdown-toggle{"aria-expanded" => "false", "data-toggle" => "dropdown", :href => "#", :role => "button"}
+            = current_user.email
+            %span.caret
+          %ul.dropdown-menu{:role => "menu"}
+            %li
+              = link_to t('pages.requested'), requested_records_path
+            %li.divider
+            %li
+              = link_to t('actions.sign_out'), destroy_user_session_path, method: :delete
