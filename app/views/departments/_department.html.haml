@@ -1,1 +1,5 @@
-= link_to department.title, department
+.panel.panel-custom
+  %a.panel-heading{href: department_path(department)}
+    %h3.panel-title= department.title
+  .panel-body
+    Panel content

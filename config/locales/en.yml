@@ -9,11 +9,17 @@ en:
 
   actions:
     sign_out: 'Sign out'
-    add_request: 'Add request'
     bookkeeping: 'Bookkeeping'
     pending: 'Pending records'
+
+    add_request: 'Add request'
+    add_employee: 'Add employee'
+    add_department: 'Add department'
+    destroy_department: 'Delete department'
 
   terms:
     sickness: Sickness
     vacation: Vacation
     day_off: Day off
+    departments: 'Departments'
+    employees: 'Employees'

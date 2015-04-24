@@ -1,2 +1,2 @@
-= link_to user.email, user
-%br
+%a.list-group-item{href: user_path(user)}
+  = "[#{user.email}]"
