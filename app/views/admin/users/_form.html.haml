@@ -3,7 +3,7 @@
   .row= f.input :middle_name, placeholder: 'Walton', wrapper_html: { class: 'col-sm-6' }
   .row= f.input :last_name, placeholder: 'Lucas', wrapper_html: { class: 'col-sm-6' }
   .row= f.input :email, placeholder: 'father@lucasarts.com', wrapper_html: { class: 'col-sm-6' }
-  .row= f.input :department_id, collection: Department.hierarchy_tree, prompt: 'Root', wrapper_html: { class: 'col-sm-6' }
+  .row= f.input :department_id, collection: Department.hierarchy_tree, include_blank: 'Root', wrapper_html: { class: 'col-sm-6' }
   .row
     .col-sm-6
       .col-sm-offset-3= f.submit class: 'btn btn-primary'
