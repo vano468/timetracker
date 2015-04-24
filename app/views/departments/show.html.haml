@@ -1,8 +1,9 @@
 %br
-= render_breadcrumbs
+%ul.breadcrumb= render_breadcrumbs
 
 %h1
   Children by
-  = link_to @department.title, edit_admin_department_path(@department)
+  - if @department
+    = link_to @department.title, edit_admin_department_path(@department)
 
 = render 'list'
