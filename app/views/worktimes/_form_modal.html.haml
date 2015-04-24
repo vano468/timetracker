@@ -24,6 +24,6 @@
               = text_field_tag 'worktime[time_to]', @worktime.time_to, class: 'form-control', placeholder: 'ex. 09:00'
               %span.help-block
 
-          .modal-footer
+          .text-right
             %button.btn.btn-default{'data-dismiss' => 'modal'} Close
             %button.btn.btn-primary{type: 'submit'}= @worktime.submit_text

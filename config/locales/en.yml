@@ -17,6 +17,9 @@ en:
     add_department: 'Add department'
     destroy_department: 'Delete department'
 
+    edit: 'edit'
+    new: 'new'
+
   terms:
     sickness: Sickness
     vacation: Vacation

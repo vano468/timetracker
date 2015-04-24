@@ -1,3 +1,8 @@
+- if defined? title
+  .row
+    .col-sm-5
+      %h2.col-sm-offset-3.form-action-title= title
+
 = simple_form_for @department, html: { class: 'form-horizontal' }, wrapper: :horizontal_form, url: @department.new_record? ? admin_departments_path : admin_department_path do |f|
   .row= f.input :title, placeholder: 'Developers', wrapper_html: { class: 'col-sm-5' }
   .row= f.input :parent_id, collection: Department.hierarchy_tree, include_blank: 'Root', wrapper_html: { class: 'col-sm-5' }
