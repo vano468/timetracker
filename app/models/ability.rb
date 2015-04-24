@@ -3,16 +3,11 @@ class Ability
 
   def initialize(user)
     @user = user
-    guest
     if @user
       employee
       bookkeeper
       boss
     end
-  end
-
-  def guest
-    can [:read], Worktime
   end
 
   def employee

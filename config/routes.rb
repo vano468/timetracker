@@ -12,7 +12,7 @@ Rails.application.routes.draw do
 
   resources :departments, only: [:index, :show], concerns: :stats
   resources :users, only: [:show], concerns: :stats
-  resources :worktimes, only: [:index, :show, :create, :edit, :update, :destroy]
+  resources :worktimes, only: [:index, :show, :create, :edit, :update, :destroy], path: 'worktime'
   resources :records do
     get :vacation, :sickness, :day_off, on: :new
     get :pending,     on: :collection
@@ -24,5 +24,5 @@ Rails.application.routes.draw do
     resources :comments, except: [:index, :show]
   end
 
-  root to: redirect('worktimes')
+  root 'root#index'
 end
