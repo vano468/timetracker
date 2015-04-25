@@ -18,5 +18,5 @@ class User < ActiveRecord::Base
     where department: department
   end
 
-  devise :database_authenticatable, :rememberable, :trackable, :validatable
+  devise :database_authenticatable, :rememberable, :trackable, :validatable, :recoverable
 end

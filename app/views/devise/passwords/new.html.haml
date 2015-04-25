@@ -1,0 +1,17 @@
+- content_for :title, t('pages.password_reset')
+
+.sign_in
+  .jumbotron
+    .container
+      %span.glyphicon.glyphicon-time
+      %h2= t 'title'
+
+      .box
+        - if flash[:alert]
+          .alert.alert-danger= flash[:alert]
+
+        = simple_form_for(resource, as: resource_name, url: password_path(resource_name)) do |f|
+          = f.input :email, placeholder: 'email', label: false
+
+          %button.btn.btn-default.full-width
+            %span.glyphicon.glyphicon-refresh

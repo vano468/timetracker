@@ -3,6 +3,8 @@ en:
 
   pages:
     sign_in: 'Sign in'
+    password_reset: 'Reset password'
+    password_change: 'Change password'
     requested: 'My requests'
     calendar: 'Calendar'
     departments: 'Hierarchy'

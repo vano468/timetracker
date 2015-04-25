@@ -1,0 +1,19 @@
+- content_for :title, t('pages.password_change')
+
+.sign_in
+  .jumbotron
+    .container
+      %span.glyphicon.glyphicon-time
+      %h2= t 'title'
+
+      .box
+        - if flash[:alert]
+          .alert.alert-danger= flash[:alert]
+
+        = simple_form_for(resource, as: resource_name, url: password_path(resource_name), method: :put) do |f|
+          = f.hidden_field :reset_password_token
+          = f.password_field :password, placeholder: 'New password', label: false
+          = f.password_field :password_confirmation, placeholder: 'Confirm password', label: false
+
+          %button.btn.btn-default.full-width
+            %span.glyphicon.glyphicon-ok
