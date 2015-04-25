@@ -1,0 +1,12 @@
+mailer:
+  service: smtp
+  host: localhost:3000
+
+  smtp:
+    address: 'smtp.yandex.ru'
+    domain:  '127.0.0.1:3000'
+    port:     587
+
+    email:   'ROBOT-MAILER@isolat.co'
+    password: ROBOT-PASSWORD
+    authentication: plain

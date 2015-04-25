@@ -24,6 +24,7 @@ gem 'cancancan'
 gem 'valid_email'
 gem 'simple_form'
 
+gem 'rails_config'
 gem 'devise'
 gem 'wisper'
 gem 'wisper-celluloid'
