@@ -7,8 +7,9 @@ class Admin::UsersController < ApplicationController
 
   def create
     @user = User.new user_params
+    @user.password = Devise.friendly_token[0, 8]
     if @user.save
-      redirect_to admin_users_path
+      redirect_to @user.department.present? ? department_path(@user.department) : departments_path
     else
       render 'new'
     end
@@ -42,6 +43,6 @@ class Admin::UsersController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit(:email, :password, :department_id, :first_name, :middle_name, :last_name)
+    params.require(:user).permit(:email, :department_id, :first_name, :middle_name, :last_name)
   end
 end
