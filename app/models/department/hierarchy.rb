@@ -1,23 +1,23 @@
 module Department::Hierarchy
-  def hierarchy
-    hierarchy = []
-    current   = self
-    hierarchy << current
-    while current = current.parent
+  extend ActiveSupport::Concern
+
+  included do
+    def hierarchy
+      hierarchy = []
+      current   = self
       hierarchy << current
+      while current = current.parent
+        hierarchy << current
+      end
+      hierarchy.reverse!
     end
-    hierarchy.reverse!
+
+    def hierarchy_title
+      "#{'―' * (hierarchy.count - 1)} #{title}"
+    end
   end
 
-  def hierarchy_title
-    "#{'―' * (hierarchy.count - 1)} #{title}"
-  end
-
-  def self.included(base)
-    base.extend ClassMethods
-  end
-
-  module ClassMethods
+  class_methods do
     def hierarchy_tree
       result = []
       top_level.order(:id).each do |d|
@@ -34,5 +34,4 @@ module Department::Hierarchy
       end
     end
   end
-
 end

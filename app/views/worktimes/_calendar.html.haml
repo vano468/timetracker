@@ -1,4 +1,3 @@
 .calendar
   = month_calendar calendar_options do |date|
-    = link_to date.day, worktime_path(date),
-     remote: true
+    = link_to date.day, worktime_path(date), remote: true
