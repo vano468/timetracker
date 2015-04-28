@@ -1,4 +1,10 @@
 .calendar
   = month_calendar calendar_options do |date|
     = link_to date.day, worktime_path(date), remote: true
-    = WorkHoursForEmployeeOnDay.result(current_user, date)
+    - hours = WorkHoursForEmployeeOnDay.result(current_user, date)
+    - if hours < 6
+      %span.text-danger= hours
+    - elsif hours < 8
+      %span.text-warning= hours
+    - else
+      %span.text-success= hours
