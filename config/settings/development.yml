@@ -7,6 +7,6 @@ mailer:
     domain:  '127.0.0.1:3000'
     port:     587
 
-    email:   'ROBOT-MAILER@isolat.co'
-    password: ROBOT-PASSWORD
+    email:   'development@isolat.co'
+    password: '123456789'
     authentication: plain
