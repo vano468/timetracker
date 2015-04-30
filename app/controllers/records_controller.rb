@@ -11,7 +11,7 @@ class RecordsController < ApplicationController
     @record = Record.new record_params
     @record.user = current_user
     if @record.save
-      Comment.create message: params[:comment], record: @record, user: current_user
+      Comment.create message: record_params[:comment], record: @record, user: current_user
       redirect_to requested_records_path
     else
       render 'new'
@@ -75,7 +75,7 @@ private
 
   def record_params
     [:record, :vacation, :day_off, :sickness].each do |type|
-      return params.require(type).permit(:type, :date_from, :date_to, :emails) if params.has_key? type
+      return params.require(type).permit(:type, :date_from, :date_to, :emails, :comment) if params.has_key? type
     end
   end
 
