@@ -15,11 +15,11 @@ class WorktimesController < ApplicationController
   end
 
   def create
-    @worktime = Worktime.new worktime_params
     set_form
     respond_to do |format|
-      if @form.validate(params[:worktime]) && @form.save
-        set_worktimes
+      if @form.validate params[:worktime]
+        @form.save
+        set_worktimes @form.model.day
         format.js
       else
         format.js { render json: @form.errors }
