@@ -1,3 +1,2 @@
 class Sickness < Record
-
 end
