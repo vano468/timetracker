@@ -5,6 +5,7 @@ class Worktime < Record
   validates      :time_from, :time_to, format: { with: /\A[0-2][0-9]:[0-5][0-9]\z/, message: 'should be in hh:mm format' }
 
   before_save :build_record
+  after_save  :add_comment
 
   scope :user, -> (user) { where user: user }
 

@@ -56,13 +56,15 @@ private
     day = WorktimeDecorator.decorate(@worktime).only_day unless @worktime.nil?
     @worktimes = Worktime.user(current_user).for_day(day).decorate
     @worktime  = Worktime.new(day: day).decorate
+    @form = WorktimeForm.new worktime: @worktime, comment: Comment.new
   end
 
   def set_worktime
     @worktime = Worktime.find(params[:id]).decorate
+    @form = WorktimeForm.new worktime: @worktime, comment: Comment.new
   end
 
   def worktime_params
-    params.require(:worktime).permit :day, :time_from, :time_to
+    params.require(:worktime).permit(:day, :time_from, :time_to, :comment)
   end
 end

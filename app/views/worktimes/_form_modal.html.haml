@@ -9,21 +9,13 @@
           = @worktime.form_title
 
       .modal-body
-        = form_for @worktime, remote: true, html: { class: 'form-horizontal' } do |f|
+        = simple_form_for @form, remote: true, html: { class: 'form-horizontal' }, wrapper: :horizontal_form do |f|
           = f.hidden_field :day
-
-          .form-group
-            = f.label :time_from, 'Time from:', class: 'col-xs-3 control-label'
-            .col-xs-9
-              = text_field_tag 'worktime[time_from]', @worktime.time_from, class: 'form-control', placeholder: 'ex. 09:00'
-              %span.help-block
-
-          .form-group
-            = f.label :time_to, 'Time to:', class: 'col-xs-3 control-label'
-            .col-xs-9
-              = text_field_tag 'worktime[time_to]', @worktime.time_to, class: 'form-control', placeholder: 'ex. 09:00'
-              %span.help-block
-
-          .text-right
-            %button.btn.btn-default{'data-dismiss' => 'modal'} Close
-            %button.btn.btn-primary{type: 'submit'}= @worktime.submit_text
+          .row= f.input :time_from, placeholder: 'ex. 09:00', wrapper_html: { class: 'col-sm-12' }
+          .row= f.input :time_to,   placeholder: 'ex. 18:00', wrapper_html: { class: 'col-sm-12' }
+          .row= f.input :message,   placeholder: 'I worked so hard', wrapper_html: { class: 'col-sm-12' }
+          .row
+            .form-group.col-sm-12
+              .col-sm-12.text-right
+                %button.btn.btn-default{'data-dismiss' => 'modal'} Close
+                %button.btn.btn-primary{type: 'submit'}= @worktime.submit_text

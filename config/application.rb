@@ -8,6 +8,6 @@ module Timetracker
   class Application < Rails::Application
     config.sass.preferred_syntax = :sass
     config.active_record.raise_in_transactional_callbacks = true
-    config.autoload_paths += Dir["#{config.root}/app/models/**/"]
+    config.autoload_paths += Dir["#{config.root}/app/models/**/", "#{config.root}/app/forms/**/"]
   end
 end
