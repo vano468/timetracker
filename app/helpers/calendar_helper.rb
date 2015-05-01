@@ -1,6 +1,6 @@
 module CalendarHelper
   def calendar_options
-    today = DateTime.now.strftime '%Y-%m-%d'
+    today = date_today
     month = DateTime.now.month
     @calendar_options = {
         table: { class: 'calendar-body' },
@@ -10,5 +10,9 @@ module CalendarHelper
             data: { day: current_calendar_date.to_s }
         }}
     }
+  end
+
+  def date_today
+    DateTime.now.strftime '%Y-%m-%d'
   end
 end

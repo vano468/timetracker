@@ -1,13 +1,22 @@
 class WorktimesController < ApplicationController
+  include CalendarHelper
+
   authorize_resource
   before_action :set_worktime, only: [:edit, :update, :destroy]
 
   def index
-    set_worktimes DateTime.now.strftime '%Y-%m-%d'
+    set_worktimes date_today
   end
 
   def show
     set_worktimes params[:id]
+    respond_to do |format|
+      format.html { redirect_to worktimes_path }
+      format.js
+    end
+  end
+
+  def edit
     respond_to do |format|
       format.html { redirect_to worktimes_path }
       format.js
@@ -25,13 +34,6 @@ class WorktimesController < ApplicationController
       else
         format.js { render json: @worktime.errors }
       end
-    end
-  end
-
-  def edit
-    respond_to do |format|
-      format.html { redirect_to worktimes_path }
-      format.js
     end
   end
 
