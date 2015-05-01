@@ -16,14 +16,13 @@ class WorktimesController < ApplicationController
 
   def create
     @worktime = Worktime.new worktime_params
-    @worktime.user = current_user
-
+    set_form
     respond_to do |format|
-      if @worktime.save
+      if @form.validate(params[:worktime]) && @form.save
         set_worktimes
         format.js
       else
-        format.js { render json: @worktime.errors }
+        format.js { render json: @form.errors }
       end
     end
   end
@@ -56,12 +55,18 @@ private
     day = WorktimeDecorator.decorate(@worktime).only_day unless @worktime.nil?
     @worktimes = Worktime.user(current_user).for_day(day).decorate
     @worktime  = Worktime.new(day: day).decorate
-    @form = WorktimeForm.new worktime: @worktime, comment: Comment.new
+    set_form @worktime
   end
 
   def set_worktime
     @worktime = Worktime.find(params[:id]).decorate
-    @form = WorktimeForm.new worktime: @worktime, comment: Comment.new
+    set_form @worktime
+  end
+
+  def set_form(worktime = nil, comment = nil)
+    worktime = Worktime.new user: current_user if worktime.nil?
+    comment  = Comment.new  user: current_user if comment.nil?
+    @form = WorktimeForm.new worktime: worktime, comment: comment
   end
 
   def worktime_params
