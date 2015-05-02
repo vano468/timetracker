@@ -9,10 +9,9 @@ module Service
 
     def create
       worktime = Worktime.new worktime_params
-      comment = worktime.build_comment comment_params
       ActiveRecord::Base.transaction do
         worktime.save!
-        comment.save! unless comment.message.empty?
+        create_comment_for worktime
       end
       worktime.decorate
     end
@@ -20,10 +19,29 @@ module Service
     def update(worktime_id, comment_id)
       ActiveRecord::Base.transaction do
         worktime = Worktime.find worktime_id
-        comment  = Comment.find  comment_id
+        comment  = Comment.find_by id: comment_id
         worktime.update! worktime_params
-        comment.update!  comment_params
+        if comment
+          update_comment comment
+        else
+          create_comment_for worktime
+        end
         worktime.decorate
+      end
+    end
+
+  private
+
+    def create_comment_for(worktime)
+      comment = worktime.build_comment comment_params
+      comment.save! unless comment.message.empty?
+    end
+
+    def update_comment(comment)
+      if comment_params[:message].empty?
+        comment.destroy
+      else
+        comment.update! comment_params
       end
     end
   end
