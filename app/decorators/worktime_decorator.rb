@@ -1,9 +1,14 @@
 class WorktimeDecorator < Draper::Decorator
   delegate_all
 
-  def day_title
+  def day
     date = object.day
     date = only_day unless date
+    date
+  end
+
+  def day_title
+    date = day
     date = DateTime.parse date unless date.instance_of? DateTime
     "#{Date::MONTHNAMES[date.month]} #{date.day}"
   end

@@ -18,7 +18,13 @@ module Service
     end
 
     def update(worktime_id, comment_id)
-
+      ActiveRecord::Base.transaction do
+        worktime = Worktime.find worktime_id
+        comment  = Comment.find  comment_id
+        worktime.update! worktime_params
+        comment.update!  comment_params
+        worktime.decorate
+      end
     end
   end
 end

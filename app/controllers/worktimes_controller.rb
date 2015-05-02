@@ -2,8 +2,9 @@ class WorktimesController < ApplicationController
   include CalendarHelper
 
   authorize_resource
-  before_action :create_new_form, only: [:index, :create]
-  before_action :set_worktime, only: [:edit, :update, :destroy]
+  before_action :set_exist_worktime, only: [:edit, :update, :destroy]
+  before_action :create_new_form, only:  [:index, :show, :create]
+  before_action :create_edit_form, only: [:edit, :update]
 
   def index
     set_worktimes date_today
@@ -40,6 +41,9 @@ class WorktimesController < ApplicationController
   end
 
   def update
+    workflow = Workflow::Worktime.new current_user, @form, params[:worktime]
+    workflow.process
+=begin
     respond_to do |format|
       if @worktime.update worktime_params
         set_worktimes
@@ -48,6 +52,7 @@ class WorktimesController < ApplicationController
         format.js { render json: @worktime.errors }
       end
     end
+=end
   end
 
   def destroy
@@ -59,15 +64,23 @@ private
   def set_worktimes(day = nil)
     day = WorktimeDecorator.decorate(@worktime).only_day unless @worktime.nil?
     @worktimes = Worktime.user(current_user).for_day(day).decorate
+    set_new_worktime day
+  end
+
+  def set_new_worktime(day)
     @worktime  = Worktime.new(day: day).decorate
   end
 
-  def set_worktime
+  def set_exist_worktime
     @worktime = Worktime.find(params[:id]).decorate
   end
 
   def create_new_form
     @form = Form::Worktime.new worktime: Worktime.new, comment: Comment.new
+  end
+
+  def create_edit_form
+    @form = Form::Worktime.new worktime: @worktime, comment: @worktime.comment || Comment.new
   end
 
   def worktime_params
