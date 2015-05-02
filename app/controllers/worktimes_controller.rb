@@ -26,33 +26,11 @@ class WorktimesController < ApplicationController
   end
 
   def create
-    workflow = Workflow::Worktime.new current_user, @form, params[:worktime]
-    workflow.process
-=begin
-    respond_to do |format|
-      if @worktime.save
-        set_worktimes
-        format.js
-      else
-        format.js { render json: @worktime.errors }
-      end
-    end
-=end
+    update_or_create
   end
 
   def update
-    workflow = Workflow::Worktime.new current_user, @form, params[:worktime]
-    workflow.process
-=begin
-    respond_to do |format|
-      if @worktime.update worktime_params
-        set_worktimes
-        format.js
-      else
-        format.js { render json: @worktime.errors }
-      end
-    end
-=end
+    update_or_create
   end
 
   def destroy
@@ -60,6 +38,20 @@ class WorktimesController < ApplicationController
   end
 
 private
+
+  def update_or_create
+    workflow = Workflow::Worktime.new current_user, @form, _params = worktime_params
+    status = workflow.process
+
+    respond_to do |format|
+      if status
+        set_worktimes _params[:day]
+        format.js
+      else
+        format.js { render json: @form.errors }
+      end
+    end
+  end
 
   def set_worktimes(day = nil)
     day = WorktimeDecorator.decorate(@worktime).only_day unless @worktime.nil?
@@ -84,6 +76,6 @@ private
   end
 
   def worktime_params
-    params.require(:worktime).permit(:day, :time_from, :time_to, :comment)
+    params.require(:worktime).permit(:day, :time_from, :time_to, :message)
   end
 end

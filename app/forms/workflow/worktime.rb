@@ -18,6 +18,9 @@ module Workflow
           end
           yield worktime if block_given?
         end
+        true
+      else
+        false
       end
     end
   end
