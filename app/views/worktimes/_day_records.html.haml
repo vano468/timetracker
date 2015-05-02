@@ -11,6 +11,3 @@
           = link_to fa_icon('remove'), row, remote: true, method: :delete, data: { confirm: 'Are you sure?' }, class: 'destroy'
         - if row.comment
           %p.comment= row.comment.message
-
-  #new-record-modal= render 'modal'
-  #edit-record-modal

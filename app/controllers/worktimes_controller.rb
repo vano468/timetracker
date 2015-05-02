@@ -3,8 +3,8 @@ class WorktimesController < ApplicationController
 
   authorize_resource
   before_action :set_exist_worktime, only: [:edit, :update, :destroy]
-  before_action :create_new_form, only:  [:index, :show, :create]
-  before_action :create_edit_form, only: [:edit, :update]
+  before_action :create_new_form,    only: [:index, :show, :create]
+  before_action :create_edit_form,   only: [:edit, :update]
 
   def index
     set_worktimes date_today
@@ -41,14 +41,15 @@ private
 
   def handle_update_or_create
     workflow = Workflow::Worktime.new current_user, @form, _params = worktime_params
+    action = workflow.new_record? ? 'new' : 'edit'
     status = workflow.process
 
+    set_worktimes _params[:day]
     respond_to do |format|
       if status
-        set_worktimes _params[:day]
         format.js
       else
-        format.js { render json: @form.errors, status: :unprocessable_entity }
+        format.js { render json: { action: action, content: render_to_string(partial: 'form') }, status: :unprocessable_entity }
       end
     end
   end

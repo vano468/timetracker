@@ -23,5 +23,9 @@ module Workflow
         false
       end
     end
+
+    def new_record?
+      form.model[:worktime].new_record?
+    end
   end
 end
