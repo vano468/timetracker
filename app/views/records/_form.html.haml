@@ -1,0 +1,14 @@
+- if defined? title
+  .row
+    .col-sm-6
+      %h2.col-sm-offset-3.form-action-title= title
+
+= simple_form_for @record, url: records_path, html: { class: 'form-horizontal' }, wrapper: :horizontal_form do |f|
+  = f.input :type, as: 'hidden'
+  .row= f.input :date_from, as: :date_picker, wrapper_html: { class: 'col-sm-6' }
+  .row= f.input :date_to,   as: :date_picker, wrapper_html: { class: 'col-sm-6' }
+  .row= f.input :emails, placeholder: 'List of emails separated by space', as: :string, wrapper_html: { class: 'col-sm-6' }
+  .row= f.input :comment, placeholder: 'I don\'t want to live on this planet anymore', as: :text, wrapper_html: { class: 'col-sm-6' }
+  .row
+    .col-sm-6
+      .col-sm-offset-3= f.submit class: 'btn btn-primary'

@@ -1,4 +1,20 @@
 GIT
+  remote: git://github.com/derekprior/momentjs-rails.git
+  revision: 9fac38f9b7603ad5da4cba4d971654370f9e2d7b
+  specs:
+    momentjs-rails (2.10.2)
+      railties (>= 3.1)
+
+GIT
+  remote: git://github.com/zpaulovics/datetimepicker-rails.git
+  revision: c5405f3486b57a52416caf93b79fc09d56930a82
+  branch: master
+  submodules: true
+  specs:
+    datetimepicker-rails (4.7.15)
+      momentjs-rails (>= 2.9.0)
+
+GIT
   remote: https://github.com/kernel-io/validates_timeliness.git
   revision: d308c3da73df595bf2542b821a54ddcea974625f
   specs:
@@ -94,6 +110,8 @@ GEM
       execjs
       json
     columnize (0.9.0)
+    date_validator (0.7.1)
+      activemodel
     debug_inspector (0.0.2)
     devise (3.4.1)
       bcrypt (~> 3.0)
@@ -317,6 +335,8 @@ DEPENDENCIES
   capybara
   coffee-rails (~> 4.1.0)
   coffeelint
+  date_validator
+  datetimepicker-rails!
   devise
   draper (~> 1.3)
   factory_girl_rails
@@ -329,6 +349,7 @@ DEPENDENCIES
   jc-validates_timeliness!
   jquery-rails
   mandrill_mailer
+  momentjs-rails (>= 2.8.1)!
   pg
   rack-mini-profiler
   rails (= 4.2.0)

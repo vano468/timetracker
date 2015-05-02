@@ -1,14 +1,1 @@
-%h1= @record.type
-%h2 New
-
-= form_for @record, url: records_path do |f|
-  = f.hidden_field :type
-  = f.date_select :date_from
-  %br
-  = f.date_select :date_to
-  %br
-  = f.text_field :emails, placeholder: 'Emails'
-  %br
-  = f.text_area :comment, placeholder: 'Comment'
-  %br
-  = f.submit
+= render 'form', title: ("#{t('actions.new').capitalize} #{t('terms.' + @record.type.downcase)}").humanize

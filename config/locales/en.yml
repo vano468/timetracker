@@ -21,11 +21,13 @@ en:
 
     edit: 'edit'
     new: 'new'
+    create: 'create'
 
   terms:
     sickness: Sickness
     vacation: Vacation
     day_off: Day off
+    dayoff: Day off
     departments: 'Departments'
     department: 'department'
     employees: 'Employees'
@@ -34,3 +36,7 @@ en:
   messages:
     not_contains_users: 'Not contains employees'
     not_contains_departments: 'Not contains sub departments'
+
+  errors:
+    messages:
+      not_a_date: 'is not a valid date'
