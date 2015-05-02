@@ -1,7 +1,7 @@
 TimeTracker.FormErrors =
 
   setErrorsCallback: (prefix) ->
-    $(document).bind 'ajaxError', "form##{prefix}_worktime", (event, jqxhr, settings, exception) =>
+    $("[id^=#{prefix}_worktime]").bind 'ajax:error', (event, jqxhr, settings, exception) =>
       @renderFormErrors.call $(event.data), $.parseJSON jqxhr.responseText
 
   renderFormErrors: (errors) ->

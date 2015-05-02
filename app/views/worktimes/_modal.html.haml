@@ -1,0 +1,12 @@
+.modal.fade
+  .modal-dialog
+    .modal-content
+
+      .modal-header
+        %button.close{'aria-hidden' => 'true', 'data-dismiss' => 'modal', type: 'button'} ×
+        %h4.modal-title
+          = @worktime.day_title + ': '
+          = @worktime.form_title
+
+      .modal-body
+        = render 'form'

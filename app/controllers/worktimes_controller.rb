@@ -26,11 +26,11 @@ class WorktimesController < ApplicationController
   end
 
   def create
-    update_or_create
+    handle_update_or_create
   end
 
   def update
-    update_or_create
+    handle_update_or_create
   end
 
   def destroy
@@ -39,7 +39,7 @@ class WorktimesController < ApplicationController
 
 private
 
-  def update_or_create
+  def handle_update_or_create
     workflow = Workflow::Worktime.new current_user, @form, _params = worktime_params
     status = workflow.process
 
@@ -48,7 +48,7 @@ private
         set_worktimes _params[:day]
         format.js
       else
-        format.js { render json: @form.errors }
+        format.js { render json: @form.errors, status: :unprocessable_entity }
       end
     end
   end
