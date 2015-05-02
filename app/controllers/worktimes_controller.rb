@@ -47,6 +47,7 @@ private
     set_worktimes _params[:day]
     respond_to do |format|
       if status
+        create_new_form
         format.js
       else
         format.js { render json: { action: action, content: render_to_string(partial: 'form') }, status: :unprocessable_entity }
