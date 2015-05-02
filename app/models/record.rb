@@ -6,7 +6,7 @@ class Record < ActiveRecord::Base
   belongs_to :user
   has_many :comments, dependent: :destroy
 
-  validates :date_from, :date_to, date: true
+  validates :date_from, :date_to, date: true, unless: -> (record) { record.is_a?(Worktime) }
   validate :dates_cannot_be_in_the_past, :date_from_lesser_than_date_to, :emails_should_be_valid,
            unless: -> (record) { record.is_a?(Worktime) || !record.errors.blank? }
 
