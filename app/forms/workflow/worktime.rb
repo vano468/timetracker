@@ -2,7 +2,7 @@ module Workflow
   class Worktime
     attr_reader :form, :params, :user
 
-    def initialize( user, form, params)
+    def initialize(user, form, params)
       @user   = user
       @form   = form
       @params = params

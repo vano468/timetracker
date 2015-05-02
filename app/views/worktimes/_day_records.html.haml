@@ -4,10 +4,13 @@
     = button_tag 'Add record', class: 'day-add', id: 'new-record'
   .day-body
     - @worktimes.each do |row|
-      .day-row
-        = "#{row.time_from} - #{row.time_to}"
-        = link_to fa_icon('pencil'), edit_worktime_path(row), remote: true
-        = link_to fa_icon('remove'), row, remote: true, method: :delete, data: { confirm: 'Are you sure?' }, class: 'destroy'
+      .day-row.well
+        %span.time= "#{row.time_from} - #{row.time_to}"
+        %span.actions
+          = link_to fa_icon('pencil'), edit_worktime_path(row), remote: true
+          = link_to fa_icon('remove'), row, remote: true, method: :delete, data: { confirm: 'Are you sure?' }, class: 'destroy'
+        - if row.comment
+          %p.comment= row.comment.message
 
   #new-record-modal= render 'form_modal'
   #edit-record-modal
