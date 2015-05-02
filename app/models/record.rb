@@ -1,6 +1,8 @@
 require 'valid_email/email_validator'
 
 class Record < ActiveRecord::Base
+  attr_accessor :comment
+
   belongs_to :user
   has_many :comments
 
