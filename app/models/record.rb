@@ -4,10 +4,10 @@ class Record < ActiveRecord::Base
   attr_accessor :comment
 
   belongs_to :user
-  has_many :comments
+  has_many :comments, dependent: :destroy
 
-  validate :date_from_lesser_than_date_to unless -> (record) { record.is_a? Worktime }
-  validate :dates_cannot_be_in_the_past, :emails_should_be_valid unless -> (record) { record.is_a? Worktime }
+  validate :date_from_lesser_than_date_to, unless: -> (record) { record.is_a? Worktime }
+  validate :dates_cannot_be_in_the_past, :emails_should_be_valid, unless: -> (record) { record.is_a? Worktime }
 
   after_save :send_notifications
 
@@ -24,10 +24,10 @@ private
   end
 
   def dates_cannot_be_in_the_past
-    if date_from.to_day < Date.today.to_day
+    if date_from.day < Date.today.day
       errors.add :date_from, 'can\'t be in the past'
     end
-    if date_to.to_day < Date.today.to_day
+    if date_to.day < Date.today.day
       errors.add :date_to, 'can\'t be in the past'
     end
   end

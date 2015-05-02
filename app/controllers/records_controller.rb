@@ -6,10 +6,8 @@ class RecordsController < ApplicationController
   end
 
   def create
-    @record = Record.new record_params
-    @record.user = current_user
-    if @record.save
-      Comment.create message: record_params[:comment], record: @record, user: current_user
+    @record = Service::CreateRecord.new(current_user, record_params).create
+    if @record.errors.empty?
       redirect_to requested_records_path
     else
       render 'new'

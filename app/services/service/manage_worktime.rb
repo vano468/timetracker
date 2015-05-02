@@ -1,6 +1,6 @@
 module Service
   class ManageWorktime
-    attr_accessor :worktime_params, :comment_params
+    attr_reader :worktime_params, :comment_params
 
     def initialize(user, worktime_params, comment_params)
       @worktime_params = worktime_params.merge user: user
