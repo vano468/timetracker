@@ -4,9 +4,11 @@
     - result = WorkStatusForEmployeeOnDay.result(current_user, date)
     - if result.is_a? String
       %span= result
-    - elsif result < 6
-      %span.text-danger= result
-    - elsif result < 8
-      %span.text-warning= result
     - else
-      %span.text-success= result
+      - text_hours_minutes = "#{result[:hours]}h #{result[:minutes]}m"
+      - if result[:hours] < 6
+        %span.text-danger= text_hours_minutes
+      - elsif result[:hours] < 8
+        %span.text-warning= text_hours_minutes
+      - else
+        %span.text-success= text_hours_minutes
