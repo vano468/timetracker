@@ -15,12 +15,17 @@ class RecordsController < ApplicationController
   end
 
   def edit
+    session[:record_page] = request.env['HTTP_REFERER']
   end
 
   def update
+    @record.update record_params
+    redirect_to session[:record_page]
   end
 
   def destroy
+    @record.destroy
+    redirect_to :back
   end
 
   def vacation
@@ -49,7 +54,7 @@ class RecordsController < ApplicationController
 
   def bookkeeping
     # TODO: should display only relevant records (last month)
-    @records = Record.all.where(bookkeeper_approved: nil, type: %w[Vacation Sickness])
+    @records = Record.all.where(bookkeeper_approved: nil, type: %w([Vacation Sickness]))
   end
 
   def boss_approve

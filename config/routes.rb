@@ -21,7 +21,7 @@ Rails.application.routes.draw do
     get :boss_approve,    on: :member
     get :boss_disapprove, on: :member
     get :bookkeeper_approve, on: :member
-    resources :comments, except: [:index, :show]
+    resources :comments, except: [:index, :show], shallow: true
   end
 
   root 'root#index'

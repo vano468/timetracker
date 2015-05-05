@@ -1,0 +1,29 @@
+- record = requested_record
+.col-sm-6
+  .panel.panel-default
+    .panel-heading
+      .panel-title
+        .row
+          .col-sm-6
+            = record.type
+            %span.text-muted= record.user.email if current_page? action: 'pending'
+          .col-sm-6.text-right
+            = link_to fa_icon('pencil'), edit_record_path(record)
+            = link_to fa_icon('remove'), record_path(record), method: :delete
+    .panel-body
+      .well-sm
+        %strong From:
+        = time_tag record.date_from.to_date
+        |
+        %strong To:
+        = time_tag record.date_to.to_date
+        |
+        %strong Status:
+        = record_status(record)
+      - if record.comments.any?
+        = render partial: 'comments/comment_for_record', collection: record.comments
+      .well-sm
+        = link_to 'Add comment', new_record_comment_path(record), class: 'btn btn-primary'
+        - if current_page? action: 'pending'
+          = link_to 'Approve', boss_approve_record_path(record), class: 'btn btn-success'
+          = link_to 'Disapprove', boss_disapprove_record_path(record), class: 'btn btn-danger'

@@ -1,7 +1,1 @@
-%h1 Comments
-%h2 New
-
-= form_for [@record, @comment], url: record_comments_path do |f|
-  = f.text_area :message, placeholder: 'Message'
-  %br
-  = f.submit
+= render 'form', title: ("#{t('actions.new').capitalize} #{t('terms.comment')}").humanize

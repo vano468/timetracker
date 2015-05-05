@@ -32,10 +32,11 @@ en:
     department: 'department'
     employees: 'Employees'
     employee: 'employee'
+    comment: 'Comment'
 
   messages:
-    not_contains_users: 'Not contains employees'
-    not_contains_departments: 'Not contains sub departments'
+    not_contains_users: 'Does not contain employees'
+    not_contains_departments: 'Does not contain sub departments'
 
   errors:
     messages:

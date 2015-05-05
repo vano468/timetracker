@@ -6,7 +6,7 @@ class PendingRecordsForBoss
     return unless department.present?
     department.employees.each do |e|
       # We presume that boss is in the same department as his subordinates, so we have to exclude his records
-      records = e.records.where(boss_approved: nil).where.not(type: nil, user: boss)
+      records = e.records.where.not(type: 'Worktime', user: boss).order(:id)
       records.each do |r|
         result_records << r
       end

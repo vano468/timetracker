@@ -1,0 +1,9 @@
+- comment = comment_for_record
+.well.comment
+  .col-sm-6.comment-title
+    %strong.text-muted= comment.user.email
+  .col-sm-6.text-right.comment-title
+    = link_to fa_icon('pencil'), edit_comment_path(comment)
+    = link_to fa_icon('remove'), comment_path(comment), method: :delete
+  %br
+  = comment.message

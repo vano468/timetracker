@@ -1,2 +1,1 @@
-%h1 Record
-%h2 Edit
+= render 'form', title: ("#{t('actions.edit').capitalize} #{t('terms.' + @record.type.downcase)}").humanize
