@@ -44,13 +44,11 @@ private
   end
 
   def records_should_not_overlap
-    r1 = user.records.where('date_from <= ? and date_to >= ?', date_from, date_from).take
-    r2 = user.records.where('date_from <= ? and date_to >= ?', date_to, date_to).take
-    r3 = user.records.where('date_from >= ? and date_to <= ?', date_from, date_to).take
-    if r1.present? or r3.present?
+    overlap_possibilities = OverlappingRecords.result(user, date_from, date_to)
+    if overlap_possibilities[0].present? or overlap_possibilities[2].present?
       errors.add(:date_from, 'overlaps other record')
     end
-    if r2.present? or r3.present?
+    if overlap_possibilities[1].present? or overlap_possibilities[3].present?
       errors.add(:date_to, 'overlaps other record')
     end
   end
