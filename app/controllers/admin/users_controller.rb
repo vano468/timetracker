@@ -32,6 +32,7 @@ class Admin::UsersController < Admin::AdminController
   end
 
   def destroy
+    # todo: Remove it from controller
     redirect_path = (@user.department.present? ? @user.department : departments_path)
     @user.destroy
     redirect_to redirect_path

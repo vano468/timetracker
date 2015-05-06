@@ -4,10 +4,13 @@ module Form
     include ModelReflections
     include Composition
 
+    def initialize(options)
+      @user = options[:user]
+      super options
+    end
+
     properties :day, :time_from, :time_to, on: :worktime
     properties :message, on: :comment
-    properties :id, on: :user
-
     model :worktime
 
     validates_time :time_from, :time_to
@@ -25,9 +28,9 @@ module Form
     def records_should_not_overlap
       date_from = DateTime.parse "#{day} #{time_from}"
       date_to   = DateTime.parse "#{day} #{time_to}"
-      r1 = Record.where(user_id: id).where('date_from < ? and date_to > ?', date_from, date_from).take
-      r2 = Record.where(user_id: id).where('date_from < ? and date_to > ?', date_to, date_to).take
-      r3 = Record.where(user_id: id).where('date_from > ? and date_to < ?', date_from, date_to).take
+      r1 = Record.where(user: @user).where('date_from < ? and date_to > ?', date_from, date_from).take
+      r2 = Record.where(user: @user).where('date_from < ? and date_to > ?', date_to, date_to).take
+      r3 = Record.where(user: @user).where('date_from > ? and date_to < ?', date_from, date_to).take
       if r1.present? or r3.present?
         errors.add(:time_from, 'overlaps other record')
       end

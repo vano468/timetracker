@@ -48,12 +48,12 @@ class RecordsController < ApplicationController
   end
 
   def requested
-    # TODO: should display only relevant records (this month?)
+    # todo: should display only relevant records (this month?)
     @records = current_user.records.where.not(type: 'Worktime')
   end
 
   def bookkeeping
-    # TODO: should display only relevant records (last month)
+    # todo: should display only relevant records (last month)
     @records = Record.all.where(bookkeeper_approved: nil, type: %w([Vacation Sickness]))
   end
 
