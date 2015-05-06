@@ -1,5 +1,7 @@
 class User < ActiveRecord::Base
+  include Wisper::Publisher
   include RoleModel
+
   roles_attribute :roles_mask
   roles :bookkeeper, :admin
 
@@ -13,6 +15,10 @@ class User < ActiveRecord::Base
 
   scope :without_department, -> { where department: nil }
   scope :ordered, -> { order :id }
+
+  after_create do
+    broadcast :after_create_user, self
+  end
 
   def self.by_department(department)
     where department: department
