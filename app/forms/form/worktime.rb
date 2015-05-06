@@ -15,6 +15,7 @@ module Form
 
     validates_time :time_from, :time_to
     validates      :time_from, :time_to, format: { with: /\A[0-2][0-9]:[0-5][0-9]\z/, message: 'should be in hh:mm format' }
+    validates      :time_from, :time_to, format: { without: /\A24:00\z/, message: '24:00 is not allowed' }
     validate       :time_from_lesser_than_time_to, :records_should_not_overlap
 
   private
