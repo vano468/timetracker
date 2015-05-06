@@ -8,6 +8,8 @@ module Service
 
     def create
       record = Record.new record_params
+      record.date_to += 23.hours
+      record.date_to += 59.minutes
       if record.save
         Comment.create message: record_params[:comment], record: record, user: record_params[:user]
       end
