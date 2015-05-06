@@ -4,13 +4,13 @@ class DepartmentsController < ApplicationController
 
   def index
     @departments = Department.top_level
-    @users = User.without_department
+    @users = User.without_department.decorate
     render :show
   end
 
   def show
     @departments = @department.children
-    @users = @department.employees
+    @users = @department.employees.decorate
   end
 
   def stats
