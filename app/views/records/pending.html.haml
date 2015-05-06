@@ -2,4 +2,5 @@
 %h2 Pending
 
 - if @records.present?
-  = render partial: 'records/requested_record', collection: @records
+  .row
+    = render partial: 'records/requested_record', collection: @records
