@@ -70,11 +70,11 @@ private
   end
 
   def create_new_form
-    @form = Form::Worktime.new worktime: Worktime.new, comment: Comment.new
+    @form = Form::Worktime.new worktime: Worktime.new, comment: Comment.new, user: current_user
   end
 
   def create_edit_form
-    @form = Form::Worktime.new worktime: @worktime, comment: @worktime.comment || Comment.new
+    @form = Form::Worktime.new worktime: @worktime, comment: @worktime.comment || Comment.new, user: current_user
   end
 
   def worktime_params

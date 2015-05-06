@@ -7,7 +7,7 @@ class Record < ActiveRecord::Base
   has_many :comments, dependent: :destroy
 
   validates :date_from, :date_to, date: true, unless: -> (record) { record.is_a?(Worktime) }
-  validate :dates_cannot_be_in_the_past, :date_from_lesser_than_date_to, :emails_should_be_valid,
+  validate :dates_cannot_be_in_the_past, :date_from_lesser_than_date_to, :emails_should_be_valid, :records_should_not_overlap,
            unless: -> (record) { record.is_a?(Worktime) || !record.errors.blank? }
 
   after_save :send_notifications
@@ -37,6 +37,18 @@ private
     emails_array = emails.split
     emails_array.each_with_index do |email, index|
       errors.add("email_#{index}", "#{email} is invalid") unless ValidateEmail.valid? email
+    end
+  end
+
+  def records_should_not_overlap
+    r1 = user.records.where('date_from <= ? and date_to >= ?', date_from, date_from).take
+    r2 = user.records.where('date_from <= ? and date_to >= ?', date_to, date_to).take
+    r3 = user.records.where('date_from >= ? and date_to <= ?', date_from, date_to).take
+    if r1.present? or r3.present?
+      errors.add(:date_from, 'overlaps other record')
+    end
+    if r2.present? or r3.present?
+      errors.add(:date_to, 'overlaps other record')
     end
   end
 end
