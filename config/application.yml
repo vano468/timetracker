@@ -1,0 +1,5 @@
+development:
+  mailer_domain:   'localhost:3000'
+  mailer_address:  'smtp.yandex.ru'
+  mailer_sender:   'development@isolat.co'
+  mailer_password: '123456789'
