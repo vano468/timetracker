@@ -29,7 +29,7 @@ class Admin::DepartmentsController < Admin::AdminController
 
   def destroy
     redirect_path = (@department.parent.present? ? @department.parent : departments_path)
-    @department.destroy
+    Service::DeleteDepartment.new(@department).delete
     redirect_to redirect_path
   end
 
