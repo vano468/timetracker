@@ -12,6 +12,10 @@ class UserDecorator < Draper::Decorator
 private
 
   def is_boss?
-    object == object.department.boss
+    if object.department
+      object == object.department.boss
+    else
+      false
+    end
   end
 end
