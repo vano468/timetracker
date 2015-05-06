@@ -9,7 +9,7 @@ class User < ActiveRecord::Base
   has_many :records
   has_many :comments
 
-  validates :email, presence: true
+  validates :email, :first_name, :last_name, presence: true
 
   scope :without_department, -> { where department: nil }
   scope :ordered, -> { order :id }
