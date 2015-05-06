@@ -14,6 +14,8 @@ class Ability
     can [:read, :create, :requested, :sickness, :day_off, :vacation], Record
     can [:update, :destroy], Record, user_id: @user.id
     can [:create, :update, :destroy], Worktime, user_id: @user.id
+    can [:read, :create], Comment
+    can [:update, :destroy], Comment, user_id: @user.id
   end
 
   def bookkeeper

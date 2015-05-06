@@ -1,4 +1,4 @@
-class Admin::DepartmentsController < ApplicationController
+class Admin::DepartmentsController < Admin::AdminController
   before_action :set_department, only: [:edit, :update, :destroy]
 
   def new
@@ -28,8 +28,9 @@ class Admin::DepartmentsController < ApplicationController
   end
 
   def destroy
+    redirect_path = (@department.parent.present? ? @department.parent : departments_path)
     @department.destroy
-    redirect_to :back
+    redirect_to redirect_path
   end
 
 private

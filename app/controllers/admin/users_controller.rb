@@ -1,4 +1,4 @@
-class Admin::UsersController < ApplicationController
+class Admin::UsersController < Admin::AdminController
   before_action :set_user, only: [:edit, :update, :destroy]
 
   def index
@@ -25,15 +25,16 @@ class Admin::UsersController < ApplicationController
 
   def update
     if @user.update user_params
-      redirect_to admin_users_path
+      redirect_to @user
     else
       render 'edit'
     end
   end
 
   def destroy
+    redirect_path = (@user.department.present? ? @user.department : departments_path)
     @user.destroy
-    redirect_to :back
+    redirect_to redirect_path
   end
 
   private

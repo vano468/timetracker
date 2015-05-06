@@ -1,5 +1,5 @@
 class CommentsController < ApplicationController
-
+  authorize_resource
   before_action :set_record, only: [:create, :new]
   before_action :set_comment, only: [:edit, :update, :destroy]
 

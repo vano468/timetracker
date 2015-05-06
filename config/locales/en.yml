@@ -16,8 +16,12 @@ en:
 
     add_request: 'Add request'
     add_employee: 'Add employee'
+    edit_employee: 'Edit employee'
+    destroy_employee: 'Delete employee'
     add_department: 'Add department'
+    edit_department: 'Edit department'
     destroy_department: 'Delete department'
+
 
     edit: 'edit'
     new: 'new'

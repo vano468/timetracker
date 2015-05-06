@@ -3,10 +3,11 @@
   %ul.breadcrumb= render_breadcrumbs
 
   .actions
-    = link_to t('actions.add_department'), new_admin_department_path, class: 'btn btn-sm btn-primary'
-    = link_to t('actions.add_employee'), new_admin_user_path, class: 'btn btn-sm btn-primary'
-    - if @department
-      = link_to t('actions.edit_department'), edit_admin_department_path(@department), class: 'btn btn-sm btn-info'
-      = link_to t('actions.destroy_department'), @department, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-sm btn-danger'
+    - if current_user.has_role? :admin
+      = link_to t('actions.add_department'), new_admin_department_path, class: 'btn btn-sm btn-primary'
+      = link_to t('actions.add_employee'), new_admin_user_path, class: 'btn btn-sm btn-primary'
+      - if @department
+        = link_to t('actions.edit_department'), edit_admin_department_path(@department), class: 'btn btn-sm btn-info'
+        = link_to t('actions.destroy_department'), [:admin, @department], method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-sm btn-danger'
 
   = render 'list'
