@@ -7,8 +7,11 @@ class Record < ActiveRecord::Base
   has_many :comments, dependent: :destroy
 
   validates :date_from, :date_to, date: true, unless: :is_record_worktime?
-  validate :dates_cannot_be_in_the_past, on: :create, unless: :is_record_worktime?
-  validate :emails_should_be_valid, :date_from_lesser_than_date_to, :records_should_not_overlap, unless: :is_record_worktime?
+  validate :dates_cannot_be_in_the_past,
+           :date_from_lesser_than_date_to,
+           :emails_should_be_valid,
+           :records_should_not_overlap,
+           unless: :is_record_worktime?
 
   after_save :send_notifications
 
@@ -45,8 +48,8 @@ private
   end
 
   def records_should_not_overlap
-    r1, r2, r3 = OverlappingRecords.result(user, date_from, date_to)
-    errors.add(:date_from, 'overlaps other record') if r1.present? or r3.present?
-    errors.add(:date_to, 'overlaps other record') if r2.present? or r3.present?
+    r1, r2, r3 = OverlappingRecords.result user, date_from, date_to, self
+    errors.add :date_from, 'overlaps other record' if r1.present? or r3.present?
+    errors.add :date_to, 'overlaps other record'   if r2.present? or r3.present?
   end
 end
