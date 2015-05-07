@@ -29,11 +29,11 @@ module Form
     def records_should_not_overlap
       date_from = DateTime.parse "#{day} #{time_from}"
       date_to   = DateTime.parse "#{day} #{time_to}"
-      overlap_possibilities = OverlappingRecords.result(@user, date_from, date_to)
-      if overlap_possibilities[0].present? or overlap_possibilities[2].present?
+      r1, r2, r3 = OverlappingRecords.result(@user, date_from, date_to)
+      if r1.present? or r3.present?
         errors.add(:time_from, 'overlaps other record')
       end
-      if overlap_possibilities[1].present? or overlap_possibilities[3].present?
+      if r2.present? or r3.present?
         errors.add(:time_to, 'overlaps other record')
       end
     end
