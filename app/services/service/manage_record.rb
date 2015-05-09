@@ -17,5 +17,9 @@ module Service
       end
       record
     end
+
+    def update
+
+    end
   end
 end
