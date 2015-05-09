@@ -33,8 +33,7 @@ class Admin::UsersController < Admin::AdminController
   end
 
   def destroy
-    # todo: Remove it from controller
-    redirect_path = (@user.department.present? ? @user.department : departments_path)
+    redirect_path = (@user.department.present? ? @user.department : departments_path) # todo: remove it from controller, to helper, maybe
     Service::DeleteUser.new(@user).delete
     redirect_to redirect_path
   end

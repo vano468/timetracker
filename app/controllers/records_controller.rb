@@ -1,25 +1,15 @@
 class RecordsController < ApplicationController
   authorize_resource
-  before_action :set_record, only: [:show, :boss_approve, :boss_disapprove, :bookkeeper_approve, :edit, :update, :destroy]
-
-  def index
-  end
-
-  def new
-  end
-
-  def edit
-    session[:record_page] = request.env['HTTP_REFERER']
-  end
+  before_action :set_record, only: [:show, :edit, :update, :destroy, :boss_approve, :boss_disapprove, :bookkeeper_approve]
 
   def create
     @record = Workflow::Record.new(current_user, Record.new, record_params).process
-    handle_update_or_create requested_records_path
+    handle_update_or_create
   end
 
   def update
     @record = Workflow::Record.new(current_user, @record, record_params).process
-    handle_update_or_create session[:record_page]
+    handle_update_or_create
   end
 
   def destroy
@@ -48,11 +38,13 @@ class RecordsController < ApplicationController
 
   def requested
     # todo: should display only relevant records (this month?)
+    # todo: remove this select from controller
     @records = current_user.records.where.not(type: 'Worktime')
   end
 
   def bookkeeping
     # todo: should display only relevant records (last month)
+    # todo: remove this select from controller
     @records = Record.all.where(bookkeeper_approved: nil, type: %w([Vacation Sickness]))
   end
 
@@ -73,9 +65,9 @@ class RecordsController < ApplicationController
 
 private
 
-  def handle_update_or_create(redirect_path)
+  def handle_update_or_create
     if @record.errors.empty?
-      redirect_to redirect_path
+      redirect_to requested_records_path
     else
       render 'new'
     end
