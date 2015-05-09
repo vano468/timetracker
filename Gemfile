@@ -30,8 +30,7 @@ gem 'simple_form'
 gem 'figaro'
 gem 'devise'
 gem 'wisper'
-gem 'wisper-celluloid'
-gem 'mandrill_mailer'
+
 gem 'rack-mini-profiler', require: false
 
 group :development do

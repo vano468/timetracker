@@ -8,7 +8,7 @@ class Admin::UsersController < Admin::AdminController
   def create
     @user = User.new user_params
     @user.password = Devise.friendly_token[0, 8]
-    @user.subscribe Notification::NewEmployee.new, async: true
+    @user.subscribe Notification::NewEmployee.new
     if @user.save
       redirect_to @user.department.present? ? department_path(@user.department) : departments_path
     else
