@@ -11,7 +11,7 @@ module Workflow
     def process
       if form.validate params
         form.save do |data|
-          if form.model[:worktime].new_record?
+          if new_record?
             worktime = ::Service::ManageWorktime.new(user, data[:worktime], data[:comment]).create
           else
             worktime = ::Service::ManageWorktime.new(user, data[:worktime], data[:comment]).update form.model[:worktime].id, form.model[:comment].id
