@@ -5,22 +5,21 @@ class RecordsController < ApplicationController
   def index
   end
 
-  def create
-    @record = Service::CreateRecord.new(current_user, record_params).create
-    if @record.errors.empty?
-      redirect_to requested_records_path
-    else
-      render 'new'
-    end
+  def new
   end
 
   def edit
     session[:record_page] = request.env['HTTP_REFERER']
   end
 
+  def create
+    @record = Workflow::Record.new(current_user, Record.new, record_params).process
+    handle_update_or_create requested_records_path
+  end
+
   def update
-    @record.update record_params
-    redirect_to session[:record_page]
+    @record = Workflow::Record.new(current_user, @record, record_params).process
+    handle_update_or_create session[:record_page]
   end
 
   def destroy
@@ -73,6 +72,14 @@ class RecordsController < ApplicationController
   end
 
 private
+
+  def handle_update_or_create(redirect_path)
+    if @record.errors.empty?
+      redirect_to redirect_path
+    else
+      render 'new'
+    end
+  end
 
   def record_params
     [:record, :vacation, :day_off, :sickness].each do |type|
