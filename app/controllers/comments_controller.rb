@@ -14,11 +14,13 @@ class CommentsController < ApplicationController
   end
 
   def new
-    session[:comment_page] = request.env['HTTP_REFERER']
     @comment = @record.comments.new
+    set_form_params
+    session[:comment_page] = request.env['HTTP_REFERER']
   end
 
   def edit
+    set_form_params
     session[:comment_page] = request.env['HTTP_REFERER']
   end
 
@@ -46,4 +48,8 @@ private
     @comment = Comment.find params[:id]
   end
 
+  def set_form_params
+    @comment = (@comment.new_record? ? [@comment.record, @comment] : @comment)
+    @comment_url = (@comment.new_record? ? record_comments_path : comment_path(@comment))
+  end
 end
