@@ -8,6 +8,13 @@ class Department < ActiveRecord::Base
   has_many :children,  class_name: 'Department', foreign_key: 'parent_id'
 
   validates :title, presence: true
+  validate :should_be_reachable_from_root
 
   scope :top_level, -> { where parent_id: nil }
+
+private
+
+  def should_be_reachable_from_root
+    errors.add(:parent_id, 'should be reachable from root') unless Validation::ReachRootFromDepartment.new(self).reach_root
+  end
 end
