@@ -5,8 +5,8 @@
 
 = simple_form_for @department, html: { class: 'form-horizontal' }, wrapper: :horizontal_form, url: [:admin, @department] do |f|
   .row= f.input :title, placeholder: 'Developers', wrapper_html: { class: 'col-sm-5' }
-  .row= f.input :parent_id, collection: Department.hierarchy_tree, label_method: :hierarchy_title, include_blank: 'Root', wrapper_html: { class: 'col-sm-5' }
-  .row= f.input :boss_id, collection: User.all, label_method: :email, include_blank: 'Mr. Nobody', wrapper_html: { class: 'col-sm-5' }
+  .row= f.input :parent_id, collection: Department.hierarchy_tree, label_method: :hierarchy_title, include_blank: '...Root level', wrapper_html: { class: 'col-sm-5' }
+  .row= f.input :boss_id, collection: User.all, label_method: :email, include_blank: '...Not selected', wrapper_html: { class: 'col-sm-5' }
   .row
     .col-sm-5
       .col-sm-offset-3= f.submit class: 'btn btn-primary'
