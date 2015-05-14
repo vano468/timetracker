@@ -2,9 +2,7 @@
   .row
     .col-sm-6
       %h2.col-sm-offset-3.form-action-title= title
-- object = (@comment.new_record? ? [@comment.record, @comment] : @comment)
-- url = (@comment.new_record? ? record_comments_path : comment_path(@comment))
-= simple_form_for object, url: url, html: { class: 'form-horizontal' }, wrapper: :horizontal_form do |f|
+= simple_form_for @comment, url: @comment_url, html: { class: 'form-horizontal' }, wrapper: :horizontal_form do |f|
   .row= f.input :message, wrapper_html: { class: 'col-sm-6' }
   .row
     .col-sm-6
