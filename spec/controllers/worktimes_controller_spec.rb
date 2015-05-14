@@ -4,7 +4,8 @@ RSpec.describe WorktimesController, type: :controller do
   include Devise::TestHelpers
   include CalendarHelper
 
-  let(:user) { FactoryGirl.create :user }
+  let(:worktime) { FactoryGirl.create :worktime }
+  let(:user)     { worktime.user }
 
   describe '#index' do
     context 'when is guest' do
@@ -25,7 +26,14 @@ RSpec.describe WorktimesController, type: :controller do
   describe '#show format.js' do
     before { sign_in user }
     it 'has a 302 status code' do
-      expect((get :show, id: date_today).status).to eq 302
+      expect((xhr :post, :show, id: date_today).status).to eq 200
+    end
+  end
+
+  describe '#edit format.js' do
+    before { sign_in user }
+    it 'has a 302 status code' do
+      expect((xhr :post, :edit, id: worktime).status).to eq 200
     end
   end
 end
