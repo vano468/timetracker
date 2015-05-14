@@ -8,7 +8,7 @@ class Department < ActiveRecord::Base
   has_many :children,  class_name: 'Department', foreign_key: 'parent_id'
 
   validates :title, presence: true
-  validates_with ReachRootFromDepartment
+  validates_with Departments::ReachRootFromDepartment
 
   scope :top_level, -> { where parent_id: nil }
 end
