@@ -1,5 +1,5 @@
 class Department < ActiveRecord::Base
-  include Hierarchy
+  include Department::Hierarchy
 
   belongs_to :parent,  class_name: 'Department', foreign_key: 'parent_id'
   belongs_to :boss,    class_name: 'User',       foreign_key: 'boss_id'
@@ -8,6 +8,7 @@ class Department < ActiveRecord::Base
   has_many :children,  class_name: 'Department', foreign_key: 'parent_id'
 
   validates :title, presence: true
+  validates_with DepartmentValidator::ReachRoot
 
   scope :top_level, -> { where parent_id: nil }
 end
