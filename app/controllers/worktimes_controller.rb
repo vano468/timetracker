@@ -40,17 +40,17 @@ class WorktimesController < ApplicationController
 private
 
   def handle_update_or_create
-    workflow = Workflow::Worktime.new current_user, @form, _params = worktime_params
-    action = workflow.new_record? ? 'new' : 'edit'
-    status = workflow.process
+    workflow = Workflow::Worktime.new current_user, @form, worktime_params
 
-    set_worktimes _params[:day]
     respond_to do |format|
-      if status
+      if workflow.process
+        set_worktimes worktime_params[:day]
         create_new_form
         format.js
       else
-        format.js { render json: { action: action, content: render_to_string(partial: 'form') }, status: :unprocessable_entity }
+        @worktime = @form.model[:worktime]
+        format.js { render json: { action: workflow.action, content: render_to_string(partial: 'form') },
+                           status: :unprocessable_entity }
       end
     end
   end

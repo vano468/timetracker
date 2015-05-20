@@ -31,7 +31,7 @@ gem 'figaro'
 gem 'devise'
 gem 'wisper'
 
-gem 'rack-mini-profiler', require: false
+gem 'rack-mini-profiler'
 
 group :development do
   gem 'bullet'

@@ -27,5 +27,9 @@ module Workflow
     def new_record?
       form.model[:worktime].new_record?
     end
+
+    def action
+      new_record? ? 'new' : 'edit'
+    end
   end
 end
