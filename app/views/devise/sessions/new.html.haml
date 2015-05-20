@@ -15,7 +15,7 @@
           = f.input :email, placeholder: 'email', label: false
           = f.password_field :password, placeholder: 'password', label: false
 
-          %button.btn.btn-default.full-width
+          %button.btn.btn-default.full-width#login
             %span.glyphicon.glyphicon-ok
 
         = link_to 'Forgot your password?', new_password_path(resource_name), class: 'reset-password'
