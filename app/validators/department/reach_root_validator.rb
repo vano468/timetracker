@@ -1,5 +1,5 @@
-module DepartmentValidator
-  class ReachRoot < ActiveModel::Validator
+class Department
+  class ReachRootValidator < ActiveModel::Validator
     MAX_HIERARCHY_DEPTH = 10
 
     def validate(department)
